@@ -1,0 +1,33 @@
+.cover {
+  width: 100%;
+  height: 37.5rem;
+}
+
+.home-container {
+  position: relative;
+}
+
+.primary-text {
+  position: absolute;
+  bottom: 66%;
+  left: 10%;
+  font-weight: 700;
+  font-size: 25px;
+  color: #eff3dc;
+}
+.secondary-text {
+  position: absolute;
+  bottom: 57%;
+  left: 10%;
+  font-weight: 700;
+  font-size: 41px;
+  color: #eff3dc;
+}
+
+.home-description {
+  position: absolute;
+  bottom: 50%;
+  left: 10%;
+  width: 34%;
+  color: #eff3dc;
+}
