@@ -1,9 +1,13 @@
 .cover {
   overflow: hidden;
   background-image: url("./../background-image.jpg");
-  height: 37.5rem;
-  opacity: 0.3;
+  position: relative;
+  background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  background-position: center;
+  min-height: 650px;
+  opacity: 0.3;
 }
 
 .home-container {
