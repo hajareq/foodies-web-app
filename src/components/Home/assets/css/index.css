@@ -1,13 +1,12 @@
 .cover {
   overflow: hidden;
-  background-image: url("./../background-image.jpg");
+  background-image: url("./../background-image.svg");
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   background-position: center;
   min-height: 650px;
-  opacity: 0.3;
 }
 
 .home-container {
@@ -17,7 +16,7 @@
 
 .primary-text {
   position: absolute;
-  bottom: 66%;
+  top: 30%;
   left: 10%;
   font-weight: 700;
   font-size: 25px;
@@ -25,7 +24,7 @@
 }
 .secondary-text {
   position: absolute;
-  bottom: 57%;
+  top: 37%;
   left: 10%;
   font-weight: 700;
   font-size: 41px;
@@ -34,8 +33,15 @@
 
 .home-description {
   position: absolute;
-  bottom: 50%;
+  top: 46%;
   left: 10%;
   width: 34%;
   color: #eff3dc;
+  min-width: 17rem;
+}
+.logo-central {
+  height: 237px;
+  position: absolute;
+  left: 54%;
+  top: 25%;
 }
