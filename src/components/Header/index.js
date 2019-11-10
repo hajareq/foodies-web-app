@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./assets/css/index.css";
 import Logo from "./assets/foodies-logo.png";
 
@@ -12,7 +13,9 @@ class Header extends Component {
           </li>
           <div className="buttons-wraper">
             <li>
-              <button className="sign-in-button">Sign in</button>
+              <Link to="/SignIn">
+                <button className="sign-in-button">Sign in</button>
+              </Link>
             </li>
             <li>
               <button className="sign-up-button">Sign up</button>
