@@ -33,5 +33,11 @@
   height: 40px;
   letter-spacing: normal;
   width: 100%;
-  padding-left: 10px;
+  padding-left: 4px;
+  border: none;
+  border-bottom: 2px solid gray;
+  outline: none;
+}
+.holder:focus {
+  border-bottom: 2px solid #002727;
 }
