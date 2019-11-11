@@ -9,7 +9,9 @@ class Header extends Component {
       <div>
         <ul>
           <li>
-            <img className="logo" src={Logo} alt="" />
+            <Link to="/">
+              <img className="logo" src={Logo} alt="" />
+            </Link>
           </li>
           <div className="buttons-wraper">
             <li>
@@ -18,7 +20,9 @@ class Header extends Component {
               </Link>
             </li>
             <li>
-              <button className="sign-up-button">Sign up</button>
+              <Link to="/SignUp">
+                <button className="sign-up-button">Sign up</button>
+              </Link>
             </li>
           </div>
         </ul>

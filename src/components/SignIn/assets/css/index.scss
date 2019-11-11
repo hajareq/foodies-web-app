@@ -1,7 +1,7 @@
 .sign-in-form {
   width: 100%;
   margin: auto;
-  max-width: 343px;
+  max-width: fit-content;
 }
 .sign-in-cover {
   display: flex;
@@ -24,8 +24,9 @@
 }
 .sign-in-container {
   padding: 30px;
-  max-width: 400px;
+  max-width: fit-content;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 0 20px 0;
 }
