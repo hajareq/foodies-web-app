@@ -22,23 +22,3 @@ ul {
   margin-top: 1.7rem;
   margin-left: 2rem;
 }
-
-.sign-in-button {
-  background-color: unset;
-  border: 1px solid #8de4af;
-  border-radius: 2px;
-  color: #8de4af;
-  cursor: pointer;
-  height: 30px;
-  width: 95px;
-}
-.sign-up-button {
-  background-color: #8de4af;
-  border: 1px solid #8de4af;
-  border-radius: 2px;
-  color: #1f4343;
-  cursor: pointer;
-  height: 30px;
-  margin-left: 0.5rem;
-  width: 95px;
-}

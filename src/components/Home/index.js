@@ -8,7 +8,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header withButtons />
         <div className="home-container">
           <div className="cover">
             <span className="primary-text">A social network for all your</span>

@@ -8,7 +8,7 @@ class SignUp extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
+        <Header withButtons />
         <div className="cover sign-in-cover">
           <div className="sign-in-container">
             <h1 className="sign-in">Sign Up</h1>
