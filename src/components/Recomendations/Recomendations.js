@@ -1,31 +1,53 @@
 import React, { Component } from "react";
 import RecomendationCard from "./RecomendationCard";
 import "./assets/css/index.css";
+import Healthy from "./assets/healthy.jpg";
+import American from "./assets/american.jpg";
+import Asian from "./assets/asian.jpg";
+import Biscuits from "./assets/biscuits.jpg";
+import Burgers from "./assets/burgers.jpg";
+import DietMeals from "./assets/diet-meals.jpg";
+import Drinks from "./assets/drinks.jpg";
+import IceCream from "./assets/ice-cream.jpg";
+import Couscous from "./assets/couscous.jpg";
+import Chinese from "./assets/chinese.jpg";
+import Chocolate from "./assets/chocolate.jpg";
+import Crepe from "./assets/crepe.jpg";
+import KidsFood from "./assets/kids-food.jpg";
+import FastFood from "./assets/fast-food.jpg";
+import SeaFood from "./assets/sea-food.jpg";
+import Pastery from "./assets/pastery.jpg";
+import Grill from "./assets/grill.jpg";
+import Indian from "./assets/indian.jpg";
+import Italian from "./assets/italian.jpg";
+import Juice from "./assets/juice.jpg";
 
 class Recomendations extends Component {
   render() {
     const cards = [
-      { img: "", label: "Healthy" },
-      { img: "", label: "Diet meals" },
-      { img: "", label: "American" },
-      { img: "", label: "Ice cream" },
-      { img: "", label: "Asian" },
-      { img: "", label: "Biscuit" },
-      { img: "", label: "Drinks" },
-      { img: "", label: "Burgers" },
-      { img: "", label: "Chawarmas" },
-      { img: "", label: "Chinese" },
-      { img: "", label: "Chocolate" },
-      { img: "", label: "Couscous" },
-      { img: "", label: "Crepe" },
-      { img: "", label: "Kids" },
-      { img: "", label: "Fast food" },
-      { img: "", label: "Sea food" },
-      { img: "", label: "Pastery" },
-      { img: "", label: "Grill" },
-      { img: "", label: "Indian" },
-      { img: "", label: "Italian" },
-      { img: "", label: "Juice" },
+      {
+        img: Healthy,
+        label: "Healthy"
+      },
+      { img: DietMeals, label: "Diet meals" },
+      { img: American, label: "American" },
+      { img: IceCream, label: "Ice cream" },
+      { img: Asian, label: "Asian" },
+      { img: Biscuits, label: "Biscuit" },
+      { img: Drinks, label: "Drinks" },
+      { img: Burgers, label: "Burgers" },
+      { img: Chinese, label: "Chinese" },
+      { img: Chocolate, label: "Chocolate" },
+      { img: Couscous, label: "Couscous" },
+      { img: Crepe, label: "Crepe" },
+      { img: KidsFood, label: "Kids" },
+      { img: FastFood, label: "Fast food" },
+      { img: SeaFood, label: "Sea food" },
+      { img: Pastery, label: "Pastery" },
+      { img: Grill, label: "Grill" },
+      { img: Indian, label: "Indian" },
+      { img: Italian, label: "Italian" },
+      { img: Juice, label: "Juice" },
       { img: "", label: "Kebab" },
       { img: "", label: "Moroccan" },
       { img: "", label: "Paella" },
