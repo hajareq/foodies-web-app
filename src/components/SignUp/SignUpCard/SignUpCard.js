@@ -11,7 +11,9 @@ class SignUpCard extends Component {
           <Input label="Username*" />
           <Input label="Email*" />
           <Input label="Password*" />
-          <button className="signup-button">Sign up</button>
+          <button className="signup-button" onClick={this.props.onSubmit}>
+            Sign up
+          </button>
         </form>
       </div>
     );

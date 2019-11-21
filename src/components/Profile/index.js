@@ -1,2 +1,2 @@
-import Profile from "./Profile";
-export default Profile;
+import ProfileTypeCard from "./ProfileTypeCard";
+export default ProfileTypeCard;

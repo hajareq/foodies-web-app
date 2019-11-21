@@ -1,9 +1,15 @@
-import React, { Component, Fragment } from "react";
-import Header from "../Header";
+import React, { Component } from "react";
+import ProfileTypeCard from "../Profile";
+import "./assets/css/ProfileType.css";
 
 class ProfileType extends Component {
   render() {
-    return <Header />;
+    return (
+      <div className="profile-cards-container sign-in-container">
+        <ProfileTypeCard type="Individual" />
+        <ProfileTypeCard type="Restaurant" />
+      </div>
+    );
   }
 }
 
