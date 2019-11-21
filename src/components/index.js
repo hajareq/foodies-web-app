@@ -4,6 +4,7 @@ import Home from "./Home";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Profile from "./Profile";
+import Recomendations from "./Recomendations/Recomendations";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/Profile" component={Profile} />
+            <Route exact path="/Recomendations" component={Recomendations} />
           </Switch>
         </Router>
       </Fragment>
