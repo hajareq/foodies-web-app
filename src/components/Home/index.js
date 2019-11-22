@@ -19,7 +19,7 @@ class Home extends Component {
               sollicitudin est ex, quis egestas nisi tempus et.
             </span>
             <span style={{ position: "absolute", top: "25rem", left: "9.6%" }}>
-              <Button label="Get Started" />
+              <Button width="95px" label="Get Started" />
             </span>
             <img className="logo-central" src={LogoCentral} alt=""></img>
           </div>

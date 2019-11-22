@@ -18,10 +18,15 @@ class Header extends Component {
           {this.props.withButtons && (
             <div className="buttons-wraper">
               <li>
-                <Button label="Sign in" linkTo="/SignIn" outlined />
+                <Button
+                  width="95px"
+                  label="Sign in"
+                  linkTo="/SignIn"
+                  outlined
+                />
               </li>
               <li>
-                <Button label="Sign Up" linkTo="/SignUp" />
+                <Button width="95px" label="Sign Up" linkTo="/SignUp" />
               </li>
             </div>
           )}

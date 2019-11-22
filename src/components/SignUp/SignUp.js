@@ -3,6 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import SignUpCard from "./SignUpCard/SignUpCard";
 import ProfileType from "../ProfileType";
+import Interests from "../Recomendations";
 
 class SignUp extends Component {
   state = {
@@ -12,6 +13,9 @@ class SignUp extends Component {
   handleOnSubmit = () => {
     this.setState({ profileType: true });
   };
+  handleOnProfileChosen = () => {
+    this.setState({ interests: true });
+  };
   render() {
     return (
       <Fragment>
@@ -20,7 +24,10 @@ class SignUp extends Component {
           {!this.state.profileType && !this.state.interests && (
             <SignUpCard onSubmit={this.handleOnSubmit} />
           )}
-          {this.state.profileType && !this.state.interests && <ProfileType />}
+          {this.state.profileType && !this.state.interests && (
+            <ProfileType onProfileChosen={this.handleOnProfileChosen} />
+          )}
+          {this.state.profileType && this.state.interests && <Interests />}
         </div>
         <Footer />
       </Fragment>

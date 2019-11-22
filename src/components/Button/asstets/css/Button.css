@@ -5,7 +5,7 @@
   color: #8de4af;
   cursor: pointer;
   height: 30px;
-  width: 95px;
+  margin: 0.5rem;
 }
 
 .filled {
@@ -15,6 +15,5 @@
   color: #1f4343;
   cursor: pointer;
   height: 30px;
-  margin-left: 0.5rem;
-  width: 95px;
+  margin: 0.5rem;
 }
