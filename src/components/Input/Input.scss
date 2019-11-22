@@ -11,7 +11,9 @@ $width: 320px;
 }
 .group {
   position: relative;
-  margin: 45px 0;
+  margin: 40px 20px;
+  width: -webkit-fill-available;
+  max-width: max-content;
 }
 
 textarea {
@@ -25,7 +27,7 @@ textarea {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
-  width: 320px;
+  width: 100%;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid mix(white, #1f4343, 70%);
