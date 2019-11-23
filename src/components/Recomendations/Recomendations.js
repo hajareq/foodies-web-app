@@ -21,6 +21,24 @@ import Grill from "./assets/grill.jpg";
 import Indian from "./assets/indian.jpg";
 import Italian from "./assets/italian.jpg";
 import Juice from "./assets/juice.jpg";
+import Kebab from "./assets/kebab.jpg";
+import Moroccan from "./assets/moroccan.jpg";
+import Paella from "./assets/paella.jpg";
+import Panninis from "./assets/panninis.jpg";
+import Pizza from "./assets/pizza.jpg";
+import Fish from "./assets/fish.jpg";
+import Chicken from "./assets/chicken.jpg";
+import FreshFood from "./assets/fresh-food.jpg";
+import Pasta from "./assets/pasta.jpg";
+import Salads from "./assets/salads.jpg";
+import Sandwiches from "./assets/sandwich.jpg";
+import Soups from "./assets/soups.jpg";
+import Sushis from "./assets/sushis.jpg";
+import Tacos from "./assets/tacos.jpg";
+import Tapas from "./assets/tapas.jpg";
+import Meats from "./assets/meats.jpg";
+import Bakery from "./assets/bakery.jpg";
+import Vegan from "./assets/vegan.jpg";
 
 class Recomendations extends Component {
   render() {
@@ -48,24 +66,24 @@ class Recomendations extends Component {
       { img: Indian, label: "Indian" },
       { img: Italian, label: "Italian" },
       { img: Juice, label: "Juice" },
-      { img: "", label: "Kebab" },
-      { img: "", label: "Moroccan" },
-      { img: "", label: "Paella" },
-      { img: "", label: "Panninis" },
-      { img: "", label: "Pizza" },
-      { img: "", label: "Fish" },
-      { img: "", label: "Chicken" },
-      { img: "", label: "Fresh food" },
-      { img: "", label: "Pasta" },
-      { img: "", label: "Salads" },
-      { img: "", label: "Sandwiches" },
-      { img: "", label: "Soups" },
-      { img: "", label: "Sushis" },
-      { img: "", label: "Tacos" },
-      { img: "", label: "Tapas" },
-      { img: "", label: "Meats" },
-      { img: "", label: "Bakery" },
-      { img: "", label: "Vegan" }
+      { img: Kebab, label: "Kebab" },
+      { img: Moroccan, label: "Moroccan" },
+      { img: Paella, label: "Paella" },
+      { img: Panninis, label: "Panninis" },
+      { img: Pizza, label: "Pizza" },
+      { img: Fish, label: "Fish" },
+      { img: Chicken, label: "Chicken" },
+      { img: FreshFood, label: "Fresh food" },
+      { img: Pasta, label: "Pasta" },
+      { img: Salads, label: "Salads" },
+      { img: Sandwiches, label: "Sandwiches" },
+      { img: Soups, label: "Soups" },
+      { img: Sushis, label: "Sushis" },
+      { img: Tacos, label: "Tacos" },
+      { img: Tapas, label: "Tapas" },
+      { img: Meats, label: "Meats" },
+      { img: Bakery, label: "Bakery" },
+      { img: Vegan, label: "Vegan" }
     ];
 
     return (
