@@ -23,8 +23,9 @@
   height: 100%;
   position: absolute;
   opacity: 0.5;
-  background-color: black;
+  background-color: rgb(32, 21, 21);
 }
+
 .recomendation-title {
   position: absolute;
   color: white;
@@ -33,4 +34,10 @@
 }
 .recomendation-title :hover {
   opacity: 1;
+}
+.icon-check {
+  position: absolute;
+  bottom: 72%;
+  right: 4%;
+  color: white;
 }

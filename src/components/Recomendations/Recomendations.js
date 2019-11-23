@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RecomendationCard from "./RecomendationCard";
+import Button from "../Button";
 import "./assets/css/index.css";
 import Healthy from "./assets/healthy.jpg";
 import American from "./assets/american.jpg";
@@ -94,6 +95,7 @@ class Recomendations extends Component {
               <RecomendationCard key={key} img={item.img} label={item.label} />
             );
           })}
+          <Button width="50%" label="Done" />
         </div>
       </div>
     );

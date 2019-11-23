@@ -15,7 +15,11 @@ class Button extends Component {
         >
           <button
             className={style}
-            style={{ width: this.props.width }}
+            style={{
+              width: this.props.width,
+              fontSize: "17px",
+              fontWeight: "600"
+            }}
             onClick={this.props.onClick}
           >
             {this.props.label}
