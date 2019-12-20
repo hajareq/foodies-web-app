@@ -39,11 +39,11 @@ export default class Post extends Component {
 
 Post.defaultProps = {
   post: {
-    username: "Reda ZOURANE",
+    username: "Selena GOMEZ",
     profilePicture:
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*",
     postPicture:
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
     postText: "this is a post",
     reactsNumber: 19,
     commentsNumber: 49,

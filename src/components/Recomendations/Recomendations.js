@@ -95,7 +95,7 @@ class Recomendations extends Component {
               <RecomendationCard key={key} img={item.img} label={item.label} />
             );
           })}
-          <Button width="50%" label="Done" />
+          <Button linkTo="/Feed" width="50%" label="Done" />
         </div>
       </div>
     );

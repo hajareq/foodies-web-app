@@ -5,6 +5,9 @@
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/icons": "^4.5.1",
+    "@material/react-material-icon": "^0.15.0",
+    "@material/react-tab": "^0.15.0",
+    "@material/react-tab-bar": "^0.15.0",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

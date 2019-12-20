@@ -5,6 +5,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Post from "./Post";
 import Feed from "./Feed/Feed";
+import "./index.css";
 
 class App extends Component {
   render() {
