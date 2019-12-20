@@ -22,3 +22,25 @@ ul {
   margin-top: 1.7rem;
   margin-left: 2rem;
 }
+.perm_identity {
+  display: flex;
+  justify-content: flex-end;
+  width: -webkit-fill-available;
+  margin-right: 0rem;
+  color: #8de4af;
+}
+.search {
+  width: 16rem;
+}
+.sections {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
+  color: #8de4af;
+  padding-bottom: 0.9em;
+  margin-top: 14px;
+}
+.sections-wrapper {
+  display: flex;
+}
