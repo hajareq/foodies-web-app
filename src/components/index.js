@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import Recomendations from "./Recomendations/Recomendations";
-import Profile from "./ProfileType";
+import Post from "./Post";
+import "../components/index.css";
 
 class App extends Component {
   render() {
@@ -15,8 +15,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
-            <Route exact path="/Profile" component={Profile} />
-            <Route exact path="/Recomendations" component={Recomendations} />
+            <Route exact path="/Post" component={Post} />
           </Switch>
         </Router>
       </Fragment>
