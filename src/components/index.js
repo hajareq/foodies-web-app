@@ -4,7 +4,7 @@ import Home from "./Home";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Post from "./Post";
-import "../components/index.css";
+import Feed from "./Feed/Feed";
 
 class App extends Component {
   render() {
@@ -15,6 +15,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
+            <Route exact path="/Feed" component={Feed} />
             <Route exact path="/Post" component={Post} />
           </Switch>
         </Router>
