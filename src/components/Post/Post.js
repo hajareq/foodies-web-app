@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import CommentIcon from "@material-ui/icons/Comment";
 import "./Post.css";
-export default class Post extends Component {
+import axios from "axios";
+import { connect } from "react-redux";
+import fetchAllPosts from "../../redux/actions/postActions";
+
+class Post extends Component {
+  componentDidMount() {
+    axios
+      .get("https://api.comparatrip.eu/cities/popular/5")
+      .then(res => this.props.fetchAllPosts(res.data));
+  }
   render() {
     return (
       <div className="post-container">
@@ -97,3 +106,9 @@ Post.defaultProps = {
     ]
   }
 };
+
+const mapStateToProps = ({ posts }) => ({
+  posts
+});
+
+export default connect(mapStateToProps, { fetchAllPosts })(Post);
