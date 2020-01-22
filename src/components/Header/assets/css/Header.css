@@ -44,3 +44,6 @@ ul {
 .sections-wrapper {
   display: flex;
 }
+.section-label {
+  margin-left: 3px;
+}

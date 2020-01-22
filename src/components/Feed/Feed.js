@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Header from "../Header";
 import Post from "../Post";
-import "./assets/css/index.css";
+import "./assets/css/Feed.css";
 
 class Feed extends Component {
   _renderPosts = () => {
