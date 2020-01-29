@@ -9,7 +9,11 @@ class Button extends Component {
     return (
       <Fragment>
         <Link
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center"
+          }}
           to={this.props.linkTo}
         >
           <button

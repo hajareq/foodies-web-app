@@ -66,11 +66,13 @@ class Header extends Component {
           )}
           {this.props.withSections && (
             <li className="perm_identity">
-              <input type="text" className="search" placeholder="Search..." />
-              <SearchIcon
-                fontSize="large"
-                style={{ marginRight: "1rem", marginTop: "10px" }}
+              <SearchIcon style={{ marginTop: "12px" }} />
+              <input
+                type="text"
+                className="search"
+                placeholder="Type your search here..."
               />
+
               <PersonIcon
                 fontSize="large"
                 style={{ marginRight: "1rem", marginTop: "10px" }}
