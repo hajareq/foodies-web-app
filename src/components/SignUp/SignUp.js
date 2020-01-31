@@ -4,17 +4,23 @@ import Footer from "../Footer";
 import SignUpCard from "./SignUpCard/SignUpCard";
 import ProfileType from "../ProfileType";
 import Interests from "../Recomendations";
+//import axios from "axios";
 
 class SignUp extends Component {
   state = {
     profileType: false,
-    interests: false
+    interests: false,
+    cuisines: []
   };
-  handleOnSubmit = () => {
-    this.setState({ profileType: true });
+  handleOnSubmit = state => {
+    this.setState({ profileType: true, ...state });
   };
   handleOnProfileChosen = () => {
     this.setState({ interests: true });
+  };
+  handleOnClickInterests = cuisines => {
+    this.setState({ cuisines });
+    // axios.post("http//localhost:8080/api/users").then(res =>this.props.)
   };
   render() {
     return (
@@ -27,7 +33,9 @@ class SignUp extends Component {
           {this.state.profileType && !this.state.interests && (
             <ProfileType onProfileChosen={this.handleOnProfileChosen} />
           )}
-          {this.state.profileType && this.state.interests && <Interests />}
+          {this.state.profileType && this.state.interests && (
+            <Interests onClick={this.handleOnClickInterests} />
+          )}
         </div>
         <Footer />
       </Fragment>

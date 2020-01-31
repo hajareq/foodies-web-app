@@ -42,6 +42,23 @@ import Bakery from "./assets/bakery.jpg";
 import Vegan from "./assets/vegan.jpg";
 
 class Recomendations extends Component {
+  state = {
+    cuisines: []
+  };
+  handleOnClick = (selected, index) => {
+    if (!selected) {
+      this.setState(prevState => ({
+        cuisines: [...prevState.cuisines, index]
+      }));
+    } else {
+      let cuisines = this.state.cuisines;
+      cuisines = cuisines.filter(item => item !== index);
+      this.setState({ cuisines: cuisines });
+    }
+  };
+  handleOnClickButton = () => {
+    this.props.onClick(this.state.cuisines);
+  };
   render() {
     const cards = [
       {
@@ -90,12 +107,22 @@ class Recomendations extends Component {
     return (
       <div className="intersets-cover">
         <div className="intersets-container">
-          {cards.map((item, key) => {
+          {cards.map((item, index) => {
             return (
-              <RecomendationCard key={key} img={item.img} label={item.label} />
+              <RecomendationCard
+                key={index}
+                img={item.img}
+                label={item.label}
+                onClick={selected => this.handleOnClick(selected, index)}
+              />
             );
           })}
-          <Button linkTo="/Feed" width="50%" label="Done" />
+          <Button
+            linkTo="/Feed"
+            width="50%"
+            label="Done"
+            onClick={this.handleOnClickButton}
+          />
         </div>
       </div>
     );

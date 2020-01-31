@@ -18,6 +18,7 @@ class RecomendationCard extends Component {
     };
     if (this.state.selected === false) this.setState({ selected: true, style });
     else this.setState({ selected: false, style: null });
+    this.props.onClick(this.state.selected);
   };
   render() {
     return (
