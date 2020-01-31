@@ -49,3 +49,29 @@ ul {
 .section-label {
   margin-left: 3px;
 }
+.header-drop-down {
+  width: fit-content;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 5px;
+  padding: 20px;
+  position: absolute;
+  right: 0px;
+}
+.header-name {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: black;
+}
+.header-log-out {
+  display: flex;
+  align-items: center;
+}
