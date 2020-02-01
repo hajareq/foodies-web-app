@@ -9,7 +9,7 @@ import fetchAllPosts from "../../redux/actions/postActions";
 class Post extends Component {
   componentDidMount() {
     axios
-      .get("http://localhost:8080/api/restaurant")
+      .get("http://localhost:8080/api/users")
       .then(res => this.props.fetchAllPosts(res.data));
   }
   render() {

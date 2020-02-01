@@ -9,7 +9,7 @@ export default class Input extends Component {
     return (
       <div className="group">
         <input
-          type="text"
+          type={this.props.type}
           name={this.props.name}
           value={this.props.username}
           onChange={this.handleOnChange}

@@ -30,12 +30,14 @@ class SignUpCard extends Component {
             }}
           >
             <Input
+              type="text"
               label="Email*"
               name="email"
               value="this.state.email"
               onChange={this.handleOnChange}
             />
             <Input
+              type="text"
               label="Username*"
               name="username"
               value="this.state.username"
@@ -50,12 +52,14 @@ class SignUpCard extends Component {
             }}
           >
             <Input
+              type="password"
               label="Password*"
               name="password"
               value="this.state.password"
               onChange={this.handleOnChange}
             />
             <Input
+              type="password"
               label="Confirm Password*"
               name="confirmPassword"
               value="this.state.confirmPassword"

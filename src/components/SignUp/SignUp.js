@@ -4,7 +4,9 @@ import Footer from "../Footer";
 import SignUpCard from "./SignUpCard/SignUpCard";
 import ProfileType from "../ProfileType";
 import Interests from "../Recomendations";
-//import axios from "axios";
+import { connect } from "react-redux";
+import { newUser } from "../../redux/actions/userAction";
+import axios from "axios";
 
 class SignUp extends Component {
   state = {
@@ -20,7 +22,18 @@ class SignUp extends Component {
   };
   handleOnClickInterests = cuisines => {
     this.setState({ cuisines });
-    // axios.post("http//localhost:8080/api/users").then(res =>this.props.)
+    const user = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      image:
+        "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
+      cuisines: this.state.cuisines
+    };
+    console.log(user);
+    axios.post("http://localhost:8080/api/users", user).then(res => {
+      this.props.newUser(res.data);
+    });
   };
   render() {
     return (
@@ -43,4 +56,8 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps, {
+  newUser
+})(SignUp);
