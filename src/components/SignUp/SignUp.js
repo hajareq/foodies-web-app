@@ -21,17 +21,15 @@ class SignUp extends Component {
     this.setState({ interests: true });
   };
   handleOnClickInterests = cuisines => {
-    this.setState({ cuisines });
     const user = {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
       image:
         "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
-      cuisines: this.state.cuisines
+      cuisines: cuisines
     };
-    console.log(user);
-    axios.post("http://localhost:8080/api/users", user).then(res => {
+    axios.post("http://localhost:8080/api/account/user", user).then(res => {
       this.props.newUser(res.data);
     });
   };

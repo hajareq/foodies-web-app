@@ -48,11 +48,11 @@ class Recomendations extends Component {
   handleOnClick = (selected, index) => {
     if (!selected) {
       this.setState(prevState => ({
-        cuisines: [...prevState.cuisines, index]
+        cuisines: [...prevState.cuisines, { id: index }]
       }));
     } else {
       let cuisines = this.state.cuisines;
-      cuisines = cuisines.filter(item => item !== index);
+      cuisines = cuisines.filter(item => item.id !== index);
       this.setState({ cuisines: cuisines });
     }
   };
@@ -65,55 +65,55 @@ class Recomendations extends Component {
         img: Healthy,
         label: "Healthy"
       },
-      { img: DietMeals, label: "Diet meals" },
-      { img: American, label: "American" },
-      { img: IceCream, label: "Ice cream" },
-      { img: Asian, label: "Asian" },
-      { img: Biscuits, label: "Biscuit" },
-      { img: Drinks, label: "Drinks" },
-      { img: Burgers, label: "Burgers" },
-      { img: Chinese, label: "Chinese" },
-      { img: Chocolate, label: "Chocolate" },
-      { img: Couscous, label: "Couscous" },
-      { img: Crepe, label: "Crepe" },
-      { img: KidsFood, label: "Kids" },
-      { img: FastFood, label: "Fast food" },
-      { img: SeaFood, label: "Sea food" },
-      { img: Pastery, label: "Pastery" },
-      { img: Grill, label: "Grill" },
-      { img: Indian, label: "Indian" },
-      { img: Italian, label: "Italian" },
-      { img: Juice, label: "Juice" },
-      { img: Kebab, label: "Kebab" },
-      { img: Moroccan, label: "Moroccan" },
-      { img: Paella, label: "Paella" },
-      { img: Panninis, label: "Panninis" },
-      { img: Pizza, label: "Pizza" },
-      { img: Fish, label: "Fish" },
-      { img: Chicken, label: "Chicken" },
-      { img: FreshFood, label: "Fresh food" },
-      { img: Pasta, label: "Pasta" },
-      { img: Salads, label: "Salads" },
-      { img: Sandwiches, label: "Sandwiches" },
-      { img: Soups, label: "Soups" },
-      { img: Sushis, label: "Sushis" },
-      { img: Tacos, label: "Tacos" },
-      { img: Tapas, label: "Tapas" },
-      { img: Meats, label: "Meats" },
-      { img: Bakery, label: "Bakery" },
-      { img: Vegan, label: "Vegan" }
+      { id: 41, img: DietMeals, label: "Diet meals" },
+      { id: 12, img: American, label: "American" },
+      { id: 10, img: IceCream, label: "Ice cream" },
+      { id: 5, img: Asian, label: "Asian" },
+      { id: 42, img: Biscuits, label: "Biscuit" },
+      { id: 43, img: Drinks, label: "Drinks" },
+      { id: 44, img: Burgers, label: "Burgers" },
+      { id: 28, img: Chinese, label: "Chinese" },
+      { id: 45, img: Chocolate, label: "Chocolate" },
+      { id: 51, img: Couscous, label: "Couscous" },
+      { id: 52, img: Crepe, label: "Crepe" },
+      { id: 46, img: KidsFood, label: "Kids" },
+      { id: 15, img: FastFood, label: "Fast food" },
+      { id: 4, img: SeaFood, label: "Sea food" },
+      { id: 47, img: Pastery, label: "Pastery" },
+      { id: 19, img: Grill, label: "Grill" },
+      { id: 7, img: Indian, label: "Indian" },
+      { id: 13, img: Italian, label: "Italian" },
+      { id: 53, img: Juice, label: "Juice" },
+      { id: 54, img: Kebab, label: "Kebab" },
+      { id: 26, img: Moroccan, label: "Moroccan" },
+      { id: 55, img: Paella, label: "Paella" },
+      { id: 56, img: Panninis, label: "Panninis" },
+      { id: 16, img: Pizza, label: "Pizza" },
+      { id: 57, img: Fish, label: "Fish" },
+      { id: 58, img: Chicken, label: "Chicken" },
+      { id: 59, img: Pasta, label: "Pasta" },
+      { id: 60, img: FreshFood, label: "Fresh food" },
+      { id: 49, img: Salads, label: "Salads" },
+      { id: 61, img: Sandwiches, label: "Sandwiches" },
+      { id: 50, img: Soups, label: "Soups" },
+      { id: 8, img: Sushis, label: "Sushis" },
+      { id: 48, img: Tacos, label: "Tacos" },
+      { id: 27, img: Tapas, label: "Tapas" },
+      { id: 21, img: Meats, label: "Meats" },
+      { id: 32, img: Bakery, label: "Bakery" },
+      { id: 30, img: Vegan, label: "Vegan" }
     ];
 
     return (
       <div className="intersets-cover">
         <div className="intersets-container">
-          {cards.map((item, index) => {
+          {cards.map(item => {
             return (
               <RecomendationCard
-                key={index}
+                key={item.id}
                 img={item.img}
                 label={item.label}
-                onClick={selected => this.handleOnClick(selected, index)}
+                onClick={selected => this.handleOnClick(selected, item.id)}
               />
             );
           })}
