@@ -75,3 +75,6 @@ ul {
   display: flex;
   align-items: center;
 }
+.header-sign-button-wrapper {
+  margin: 1rem;
+}

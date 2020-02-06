@@ -61,10 +61,7 @@ class Recomendations extends Component {
   };
   render() {
     const cards = [
-      {
-        img: Healthy,
-        label: "Healthy"
-      },
+      { id: 20, img: Healthy, label: "Healthy" },
       { id: 41, img: DietMeals, label: "Diet meals" },
       { id: 12, img: American, label: "American" },
       { id: 10, img: IceCream, label: "Ice cream" },

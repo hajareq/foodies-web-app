@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProfileTypeCard from "../Profile";
+import ProfileTypeCard from "../ProfileTypeCard";
 import "./assets/css/ProfileType.css";
 
 class ProfileType extends Component {

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Header from "../Header";
 import Post from "../Post";
 import "./assets/css/Feed.css";
+import AddPost from "../AddPost/AddPost";
 
 class Feed extends Component {
   _renderPosts = () => {
@@ -16,7 +17,10 @@ class Feed extends Component {
       <Fragment>
         <Header withSections />
         <div className="posts-container">
-          <div className="posts">{this._renderPosts()}</div>
+          <div className="posts">
+            <AddPost />
+            {this._renderPosts()}
+          </div>
         </div>
       </Fragment>
     );

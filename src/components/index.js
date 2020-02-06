@@ -5,8 +5,10 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Post from "./Post";
 import Feed from "./Feed/Feed";
+import AddPost from "./AddPost";
 import "./index.css";
 import IndividualProfile from "./IndividualProfile/IndividualProfile";
+import CuisineChip from "./CuisineChip";
 
 class App extends Component {
   render() {
@@ -20,6 +22,8 @@ class App extends Component {
             <Route exact path="/Feed" component={Feed} />
             <Route exact path="/Post" component={Post} />
             <Route exact path="/Profile" component={IndividualProfile} />
+            <Route exact path="/AddPOst" component={AddPost} />
+            <Route exact path="/CuisineChip" component={CuisineChip} />
           </Switch>
         </Router>
       </Fragment>

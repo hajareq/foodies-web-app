@@ -19,12 +19,17 @@ class Button extends Component {
           <button
             className={style}
             style={{
+              color: this.props.textColor,
               width: this.props.width,
               fontSize: "17px",
-              fontWeight: "600"
+              fontWeight: "600",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
             }}
             onClick={this.props.onClick}
           >
+            {this.props.icon ? this.props.icon : null}
             {this.props.label}
           </button>
         </Link>
@@ -37,7 +42,9 @@ Button.propTypes = {
   linkTo: PropTypes.string,
   label: PropTypes.string,
   outlined: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  icon: PropTypes.any,
+  textColor: PropTypes.string
 };
 
 export default Button;
