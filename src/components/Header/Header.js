@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { setCurrentUser } from "../../redux/actions/logInAction";
 import "./assets/css/Header.css";
 import Logo from "./assets/foodies-logo.png";
 import Button from "../Button";
@@ -12,11 +14,14 @@ import StarsIcon from "@material-ui/icons/Stars";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import setAuthorizationToken from "../../utils/setAuthorizationToken";
 
 class Header extends Component {
   state = {
-    profileClicked: false
+    profileClicked: false,
+    redirect: false
   };
+
   handleClick = () => {
     if (!this.state.profileClicked) {
       document.addEventListener("mousedown", this.handleClickOutside);
@@ -28,6 +33,14 @@ class Header extends Component {
     }));
   };
 
+  handleOnClickLogOut = e => {
+    e.preventDefault();
+    localStorage.removeItem("jwtToken");
+    setAuthorizationToken(false);
+    this.setState({ redirect: true });
+    this.props.setCurrentUser({});
+  };
+
   handleClickOutside = e => {
     if (this.node.contains(e.target)) {
       document.removeEventListener("mousedown", this.handleClickOutside);
@@ -35,116 +48,131 @@ class Header extends Component {
     }
     this.handleClick();
   };
+
+  handleRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/SignIn" />;
+    }
+  };
+
   render() {
     return (
-      <div style={{ display: "flex" }}>
-        <ul>
-          <li>
-            <Link to="/">
-              <img className="logo" src={Logo} alt="" />
-            </Link>
-          </li>
-          {this.props.withSections && (
-            <div className="sections-wrapper">
-              <NavLink
-                exact
-                to="/Feed"
-                className="sections"
-                activeStyle={{
-                  borderBottom: "4px solid #8de4af"
-                }}
-              >
-                <HomeIcon />
-                <span className="section-label">Home</span>
-              </NavLink>
-              <Link className="sections">
-                <FastfoodIcon />
-                <span className="section-label">Recepies</span>
+      <Fragment>
+        {this.handleRedirect()}
+        <div style={{ display: "flex" }}>
+          <ul>
+            <li>
+              <Link to={this.props.auth.isAuthenticated ? "/Feed" : "/"}>
+                <img className="logo" src={Logo} alt="" />
               </Link>
-              <Link className="sections">
-                <RestaurantIcon />
-                <span className="section-label">Restaurants</span>
-              </Link>
-              <Link className="sections">
-                <StarsIcon />
-                <span className="section-label">Recommandations</span>
-              </Link>
-            </div>
-          )}
-          {this.props.withButtons && (
-            <div className="buttons-wraper">
-              <li>
-                <Button
-                  width="95px"
-                  label="Sign in"
-                  linkTo="/SignIn"
-                  outlined
-                />
-              </li>
-              <li>
-                <Button width="95px" label="Sign Up" linkTo="/SignUp" />
-              </li>
-            </div>
-          )}
-          {this.props.withSections && (
-            <Fragment>
-              <div className="perm_identity">
-                <SearchIcon style={{ marginTop: "12px" }} />
-                <input
-                  type="text"
-                  className="search"
-                  placeholder="Type your search here..."
-                />
-              </div>
-            </Fragment>
-          )}
-        </ul>
-        {this.props.withSections && (
-          <div
-            style={{
-              backgroundColor: "#002727",
-              borderBottom: "1px solid darkslategrey"
-            }}
-            ref={node => {
-              this.node = node;
-            }}
-          >
-            <PersonIcon
-              fontSize="large"
-              style={{
-                marginRight: "1rem",
-                marginTop: "10px",
-                color: "#8DE4AF",
-                cursor: "pointer"
-              }}
-              onClick={this.handleClick}
-            />
-            {this.state.profileClicked && (
-              <div className="header-drop-down">
-                <div className="header-name">
-                  <FingerprintIcon style={{ marginRight: "7px" }} />
-                  John.doe@gmail.com
-                </div>
-                <Link to="/profile">
-                  <div className="header-profile">
-                    <PersonIcon style={{ marginRight: "7px" }} /> Profile
-                  </div>
+            </li>
+            {this.props.withSections && (
+              <div className="sections-wrapper">
+                <NavLink
+                  exact
+                  to="/Feed"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
+                  <HomeIcon />
+                  <span className="section-label">Home</span>
+                </NavLink>
+                <Link className="sections">
+                  <FastfoodIcon />
+                  <span className="section-label">Recepies</span>
                 </Link>
-                <div className="header-log-out">
-                  <ExitToAppIcon style={{ marginRight: "7px" }} />
-                  Log out
-                </div>
+                <Link className="sections">
+                  <RestaurantIcon />
+                  <span className="section-label">Restaurants</span>
+                </Link>
+                <Link className="sections">
+                  <StarsIcon />
+                  <span className="section-label">Recommandations</span>
+                </Link>
               </div>
             )}
-          </div>
-        )}
-      </div>
+            {this.props.withButtons && (
+              <div className="buttons-wraper">
+                <li>
+                  <Button
+                    width="95px"
+                    label="Sign in"
+                    linkTo="/SignIn"
+                    outlined
+                  />
+                </li>
+                <li>
+                  <Button width="95px" label="Sign Up" linkTo="/SignUp" />
+                </li>
+              </div>
+            )}
+            {this.props.withSections && (
+              <Fragment>
+                <div className="perm_identity">
+                  <SearchIcon style={{ marginTop: "12px" }} />
+                  <input
+                    type="text"
+                    className="search"
+                    placeholder="Type your search here..."
+                  />
+                </div>
+              </Fragment>
+            )}
+          </ul>
+          {this.props.withSections && (
+            <div
+              style={{
+                backgroundColor: "#002727",
+                borderBottom: "1px solid darkslategrey"
+              }}
+              ref={node => {
+                this.node = node;
+              }}
+            >
+              <PersonIcon
+                fontSize="large"
+                style={{
+                  marginRight: "1rem",
+                  marginTop: "10px",
+                  color: "#8DE4AF",
+                  cursor: "pointer"
+                }}
+                onClick={this.handleClick}
+              />
+              {this.state.profileClicked && (
+                <div className="header-drop-down">
+                  <div className="header-name">
+                    <FingerprintIcon style={{ marginRight: "7px" }} />
+                    {this.props.auth.user.sub}
+                  </div>
+                  <Link to="/profile">
+                    <div className="header-profile">
+                      <PersonIcon style={{ marginRight: "7px" }} /> Profile
+                    </div>
+                  </Link>
+                  <div
+                    className="header-log-out"
+                    onClick={this.handleOnClickLogOut}
+                  >
+                    <ExitToAppIcon style={{ marginRight: "7px" }} />
+                    Log out
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </Fragment>
     );
   }
 }
-Button.propTypes = {
+Header.propTypes = {
   withButtons: PropTypes.bool,
   withSections: PropTypes.bool
 };
 
-export default Header;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps, { setCurrentUser })(Header);

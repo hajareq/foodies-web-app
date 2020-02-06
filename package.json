@@ -9,6 +9,7 @@
     "@material/react-tab": "^0.15.0",
     "@material/react-tab-bar": "^0.15.0",
     "axios": "^0.19.2",
+    "jsonwebtoken": "^8.5.1",
     "lodash.isempty": "^4.4.0",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
