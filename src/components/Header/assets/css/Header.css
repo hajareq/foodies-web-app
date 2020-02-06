@@ -74,6 +74,7 @@ ul {
 .header-log-out {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .header-sign-button-wrapper {
   margin: 1rem;

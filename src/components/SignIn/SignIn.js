@@ -1,19 +1,23 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
-import Header from "../Header";
-import Footer from "../Footer";
-import "./assets/css/index.scss";
-import Input from "../Input";
-import validateInput from "../../Validation/SignUp";
-import axios from "axios";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { logIn } from "../../redux/actions/logInAction";
+import { setCurrentUser } from "../../redux/actions/logInAction";
+import jwt from "jsonwebtoken";
+import validateInput from "../../Validation/SignUp";
+import setAuthorizationToken from "../../utils/setAuthorizationToken";
+import axios from "axios";
+import Header from "../Header";
+import Footer from "../Footer";
+import Input from "../Input";
+import "./assets/css/index.scss";
 
 class SignIn extends Component {
   state = {
     email: "",
     password: "",
-    errors: {}
+    errors: {},
+    redirect: false
   };
   handleOnChange = (value, name) => {
     this.setState({
@@ -37,17 +41,28 @@ class SignIn extends Component {
         )
         .then(res => {
           this.props.logIn(res.data);
-          console.log(res.headers);
+          const token =
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6Indib3VqYWFmYXIgIiwiZXhwIjoxNTgxODAyOTIxLCJyb2wiOlsiUk9MRV9VU0VSIl19.oofB5-EolCJaymBnXEUyIgugOcLBcjxVF_yTtR7GRwi9jkVEY6uTtCEBog5mXRk3_VD97VwBi6sUXzgbGfuvEA";
+          localStorage.setItem("jwtToken", token);
+          this.props.setCurrentUser(jwt.decode(token));
         })
+        .then(this.setState({ redirect: true }))
         .catch(error => {
           console.log(error.response);
         });
+    }
+  };
+
+  handleRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/Feed" />;
     }
   };
   render() {
     const { errors } = this.state;
     return (
       <Fragment>
+        {this.handleRedirect()}
         <Header withButtons />
         <div className="cover sign-in-cover">
           <div className="sign-in-container">
@@ -84,11 +99,10 @@ class SignIn extends Component {
             </div>
           </div>
         </div>
-
         <Footer />
       </Fragment>
     );
   }
 }
 
-export default connect(null, { logIn })(SignIn);
+export default connect(null, { logIn, setCurrentUser })(SignIn);
