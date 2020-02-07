@@ -5,11 +5,10 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Post from "./Post";
 import Feed from "./Feed/Feed";
-import AddPost from "./AddPost";
 import "./index.css";
 import IndividualProfile from "./IndividualProfile/IndividualProfile";
-import CuisineChip from "./CuisineChip";
 import isAuthentificated from "../utils/isAuthentificated";
+import AddMenu from "./AddMenu";
 
 class App extends Component {
   render() {
@@ -20,8 +19,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
-            <Route exact path="/AddPOst" component={AddPost} />
-            <Route exact path="/CuisineChip" component={CuisineChip} />
+            <Route exact path="/AddMenu" component={AddMenu} />
             <Route exact path="/Feed" component={isAuthentificated(Feed)} />
             <Route exact path="/Post" component={isAuthentificated(Post)} />
             <Route

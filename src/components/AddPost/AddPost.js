@@ -1,15 +1,22 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import axios from "axios";
 import StarRatings from "react-star-ratings";
-import Button from "../Button";
-import { addRecipePost } from "../../redux/actions/addPostAction";
-import "./AddPost.css";
+
+import { connect } from "react-redux";
+import {
+  addRecipePost,
+  addReviewPost
+} from "../../redux/actions/addPostAction";
+
 import CuisineChip from "../CuisineChip/CuisineChip";
+import SearchRestaurant from "../SearchRestaurant/SearchRestaurant";
+import Button from "../Button";
+
 import PhotoIcon from "@material-ui/icons/Photo";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 
+import "./AddPost.css";
 class AddPost extends Component {
   state = {
     inputValue: "",
@@ -18,7 +25,8 @@ class AddPost extends Component {
     addRecipe: true,
     showCuisines: false,
     cuisines: [],
-    rating: 0
+    rating: 0,
+    chosenRestaurantId: ""
   };
   _handleRatingOnChange = newRating => {
     this.setState({
@@ -54,14 +62,45 @@ class AddPost extends Component {
   _handleOnPost = () => {
     const data = new FormData();
     data.append("file", this.state.file);
-    const recipe = {
-      cuisines: this.state.cuisines,
-      image: this.state.imagePreviewURL,
-      text: this.state.inputValue
-    };
-    axios.post("http://localhost:8080/api/post/recipe/1", recipe).then(res => {
-      this.props.addRecipePost(res.data);
-    });
+    const recipe = this.state.addRecipe
+      ? {
+          cuisines: this.state.cuisines,
+          image: this.state.imagePreviewURL,
+          text: this.state.inputValue
+        }
+      : {
+          rating: this.state.rating,
+          image: this.state.imagePreviewURL,
+          text: this.state.inputValue,
+          restaurant: { id: this.state.chosenRestaurantId }
+        };
+    if (this.state.addRecipe) {
+      axios
+        .post("http://localhost:8080/api/post/recipe/1", recipe)
+        .then(res => {
+          this.setState(
+            {
+              inputValue: "",
+              imagePreviewURL: "",
+              addRating: false,
+              addRecipe: true,
+              showCuisines: false,
+              cuisines: [],
+              rating: 0,
+              chosenRestaurantId: ""
+            },
+            () => {
+              this.props.addRecipePost(res.data);
+            }
+          );
+        });
+    } else {
+      axios
+        .post("http://localhost:8080/api/post/recommendation/1", recipe)
+        .then(res => {
+          this.props.addReviewPost(res.data);
+        });
+    }
   };
   _handleCuisineOnClick = id => {
     if (this.state.cuisines.some(cuisine => cuisine.id === id)) {
@@ -78,6 +117,11 @@ class AddPost extends Component {
     this.setState(prevState => ({
       addRating: !prevState.addRating
     }));
+  };
+  _handleonChooseRestaurant = restaurant => {
+    this.setState({
+      chosenRestaurantId: restaurant
+    });
   };
   render() {
     const cuisines = [
@@ -156,7 +200,7 @@ class AddPost extends Component {
             <div className="add-new-post-photo-upload-btn-wrapper">
               <Button
                 label="Add Photo"
-                outlined="true"
+                outlined={true}
                 textColor="#1f4343"
                 icon={<PhotoIcon />}
               />
@@ -253,13 +297,32 @@ class AddPost extends Component {
               />
             </div>
           )}
+          {!this.state.addRecipe && (
+            <SearchRestaurant
+              onChooseRestaurant={this._handleonChooseRestaurant}
+            />
+          )}
 
           <div style={{ padding: "1rem" }}>
             <Button
               label="Post"
               width="15rem"
-              outlined={this.state.imagePreviewURL ? false : true}
-              onClick={this.state.imagePreviewURL ? this._handleOnPost : null}
+              outlined={
+                (this.state.imagePreviewURL && this.state.cuisines.length) ||
+                (this.state.imagePreviewURL &&
+                  this.state.rating &&
+                  this.state.chosenRestaurantId)
+                  ? false
+                  : true
+              }
+              onClick={
+                (this.state.imagePreviewURL && this.state.cuisines.length) ||
+                (this.state.imagePreviewURL &&
+                  this.state.rating &&
+                  this.state.chosenRestaurantId)
+                  ? this._handleOnPost
+                  : null
+              }
             />
           </div>
         </div>
@@ -267,4 +330,7 @@ class AddPost extends Component {
     );
   }
 }
-export default connect(null, { addRecipePost })(AddPost);
+const mapStateToProps = ({ auth }) => ({ auth });
+export default connect(mapStateToProps, { addRecipePost, addReviewPost })(
+  AddPost
+);
