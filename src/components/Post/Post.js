@@ -2,34 +2,26 @@ import React, { Component } from "react";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import CommentIcon from "@material-ui/icons/Comment";
 import "./Post.css";
-import axios from "axios";
-import { connect } from "react-redux";
-import fetchAllPosts from "../../redux/actions/postActions";
 
 class Post extends Component {
-  componentDidMount() {
-    axios
-      .get("http://localhost:8080/api/users")
-      .then(res => this.props.fetchAllPosts(res.data));
-  }
   render() {
     return (
       <div className="post-container">
         <div className="profile-container">
           <img
-            alt={`${this.props.post.username}'s profile picture`}
+            alt={`${this.props.post.user.username}'s profile picture`}
             className="profile-picture"
-            src={this.props.post.profilePicture}
+            src={`data:image/jpeg;base64,${this.props.post.user.image}`}
           ></img>
-          <span className="username-text">{this.props.post.username}</span>
+          <span className="username-text">{this.props.post.user.username}</span>
         </div>
         <div className="image-text-container">
           <img
             alt=""
             className="post-picture"
-            src={this.props.post.postPicture}
+            src={`data:image/jpeg;base64,${this.props.post.image}`}
           ></img>
-          <span className="post-text">{this.props.post.postText}</span>
+          <span className="post-text">{this.props.post.text}</span>
         </div>
         <div className="reacts-comments-container">
           <div className="post-reacts">
@@ -48,12 +40,13 @@ class Post extends Component {
 
 Post.defaultProps = {
   post: {
+    user: { username: "Selena GOMEZ", image: "" },
     username: "Selena GOMEZ",
     profilePicture:
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*",
-    postPicture:
+    image:
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
-    postText: "this is a post",
+    text: "this is a post",
     reactsNumber: 19,
     commentsNumber: 49,
     comments: [
@@ -107,8 +100,4 @@ Post.defaultProps = {
   }
 };
 
-const mapStateToProps = ({ posts }) => ({
-  posts
-});
-
-export default connect(mapStateToProps, { fetchAllPosts })(Post);
+export default Post;

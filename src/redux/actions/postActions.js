@@ -1,10 +1,16 @@
-export const FETCH_ALL_POSTS = "FETCH_ALL_POSTS";
+export const FETCH_RECIPE_POSTS = "FETCH_RECIPE_POSTS";
+export const FETCH_REVIEW_POSTS = "FETCH_REVIEW_POSTS";
 
-const fetchAllPosts = posts => {
+export const fetchRecipePosts = posts => {
   return {
-    type: FETCH_ALL_POSTS,
+    type: FETCH_RECIPE_POSTS,
     payload: posts
   };
 };
 
-export default fetchAllPosts;
+export const fetchReviewPosts = posts => {
+  return {
+    type: FETCH_REVIEW_POSTS,
+    payload: posts
+  };
+};

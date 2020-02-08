@@ -1,16 +1,31 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 import Header from "../Header";
 import Post from "../Post";
-import "./assets/css/Feed.css";
 import AddPost from "../AddPost/AddPost";
+import { fetchRecipePosts } from "../../redux/actions/postActions";
+import { fetchReviewPosts } from "../../redux/actions/postActions";
+import "./assets/css/Feed.css";
 
 class Feed extends Component {
+  componentDidMount() {
+    axios
+      .all([
+        axios.get("http://localhost:8080/api/post/recipe"),
+        axios.get("http://localhost:8080/api/post/review")
+      ])
+      .then(
+        axios.spread((resRecipe, resReview) => {
+          this.props.fetchRecipePosts(resRecipe.data);
+          this.props.fetchReviewPosts(resReview.data);
+        })
+      );
+  }
   _renderPosts = () => {
-    let posts = [];
-    for (let i = 0; i < 6; i++) {
-      posts.push(<Post key={i} style={{ marginTop: "20px" }} />);
-    }
-    return posts;
+    return this.props.post.map((item, index) => {
+      return <Post post={item} key={index} style={{ marginTop: "20px" }} />;
+    });
   };
   render() {
     return (
@@ -26,4 +41,8 @@ class Feed extends Component {
     );
   }
 }
-export default Feed;
+
+const mapStateToProps = ({ post }) => ({ post });
+export default connect(mapStateToProps, { fetchRecipePosts, fetchReviewPosts })(
+  Feed
+);

@@ -1,9 +1,9 @@
+import { combineReducers } from "redux";
 import postReducer from "./postReducer";
 import userReducer from "./userReducer";
 import addRecipeReducer from "./addRecipeReducer";
 import addMenuReducer from "./addMenuReducer";
 import addReviewReducer from "./addReviewReducer";
-import { combineReducers } from "redux";
 import logInReducer from "./logInReducer";
 import auth from "./auth";
 

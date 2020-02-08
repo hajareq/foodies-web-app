@@ -115,7 +115,7 @@ class Recomendations extends Component {
             );
           })}
           <Button
-            linkTo="/Feed"
+            linkTo="/SignIn"
             width="50%"
             label="Done"
             onClick={this.handleOnClickButton}
