@@ -14,6 +14,7 @@ import StarsIcon from "@material-ui/icons/Stars";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import setAuthorizationToken from "../../utils/setAuthorizationToken";
 
 class Header extends Component {
@@ -79,17 +80,21 @@ class Header extends Component {
                   <HomeIcon />
                   <span className="section-label">Home</span>
                 </NavLink>
-                <Link className="sections">
+                <Link className="sections" to="/Recepies">
                   <FastfoodIcon />
                   <span className="section-label">Recepies</span>
                 </Link>
-                <Link className="sections">
-                  <RestaurantIcon />
-                  <span className="section-label">Restaurants</span>
-                </Link>
-                <Link className="sections">
+                <Link className="sections" to="/Reviews">
                   <StarsIcon />
-                  <span className="section-label">Recommandations</span>
+                  <span className="section-label">Reviews</span>
+                </Link>
+                <Link className="sections" to="/Offers">
+                  <LocalOfferIcon />
+                  <span className="section-label">Offers</span>
+                </Link>
+                <Link className="sections" to="/Donations">
+                  <RestaurantIcon />
+                  <span className="section-label">Donations</span>
                 </Link>
               </div>
             )}
