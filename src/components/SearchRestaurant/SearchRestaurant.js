@@ -21,7 +21,9 @@ class SearchRestaurant extends Component {
         if (this.state.query) {
           if (this.state.query.length % 1 === 0) {
             axios
-              .post(`http://localhost:8080/api/restaurant`, this.state.query)
+              .get(
+                `http://localhost:8080/api/restaurant/search?name=${this.state.query}`
+              )
               .then(res => {
                 this.setState(
                   {

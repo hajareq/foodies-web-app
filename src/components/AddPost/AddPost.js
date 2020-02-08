@@ -96,7 +96,7 @@ class AddPost extends Component {
         });
     } else {
       axios
-        .post("http://localhost:8080/api/post/recommendation/1", recipe)
+        .post("http://localhost:8080/api/post/review/1", recipe)
         .then(res => {
           this.props.addReviewPost(res.data);
         });
@@ -181,25 +181,44 @@ class AddPost extends Component {
       <div className="add-new-post-container">
         <div className="add-new-post-title-container">Add a new post</div>
         <div>
-          <div className="add-new-post-profile-picture-input-container">
-            <img
-              alt={`your profile avatar`}
-              className="profile-picture"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*"
-            ></img>
-
-            <input
-              type="text"
-              className="add-new-post-input"
-              placeholder="Write down your foody thought"
-              value={this.state.inputValue}
-              onChange={this._handleChange}
-            />
+          <div style={{ display: "flex" }}>
+            <div style={{ width: "50%" }}>
+              <Button
+                width="100%"
+                label="Recipe"
+                outlined={!this.state.addRecipe}
+                onClick={this.handleRecipeOnClick}
+              />
+            </div>
+            <div style={{ width: "50%" }}>
+              <Button
+                width="100%"
+                label="Review"
+                outlined={this.state.addRecipe}
+                onClick={this.handleRecomendationOnClick}
+              />
+            </div>
           </div>
-          <div className="add-new-post-buttons-container">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="add-new-post-profile-picture-input-container">
+              <img
+                alt={`your profile avatar`}
+                className="profile-picture"
+                src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*"
+              ></img>
+
+              <input
+                type="text"
+                className="add-new-post-input"
+                placeholder={`Write down your ${
+                  this.state.addRecipe ? "recipe" : "review"
+                }`}
+                value={this.state.inputValue}
+                onChange={this._handleChange}
+              />
+            </div>
             <div className="add-new-post-photo-upload-btn-wrapper">
               <Button
-                label="Add Photo"
                 outlined={true}
                 textColor="#1f4343"
                 icon={<PhotoIcon />}
@@ -211,23 +230,8 @@ class AddPost extends Component {
                 onChange={e => this._handleImageChange(e)}
               />
             </div>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "fit-content", marginRight: "0.5rem" }}>
-                <Button
-                  label="Recipe"
-                  outlined={!this.state.addRecipe}
-                  onClick={this.handleRecipeOnClick}
-                />
-              </div>
-              <div style={{ width: "fit-content" }}>
-                <Button
-                  label="Recomendation"
-                  outlined={this.state.addRecipe}
-                  onClick={this.handleRecomendationOnClick}
-                />
-              </div>
-            </div>
           </div>
+
           <div style={{ margin: "0.8rem" }}>{$imagePreview}</div>
           {this.state.addRecipe && (
             <div

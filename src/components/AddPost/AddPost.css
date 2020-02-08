@@ -1,6 +1,7 @@
 .add-new-post-profile-picture-input-container {
   display: flex;
   padding: 20px;
+  width: 90%;
 }
 .add-new-post-input {
   color: black;
@@ -22,6 +23,7 @@
   display: inline-block;
   cursor: pointer;
   width: fit-content;
+  height: fit-content;
 }
 
 .add-new-post-photo-upload-btn-wrapper input[type="file"] {
@@ -31,11 +33,7 @@
   opacity: 0;
   cursor: pointer;
 }
-.add-new-post-buttons-container {
-  margin: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-}
+
 .add-new-post-image-preview {
   -webkit-box-shadow: inset 0px 0px 50px 6px rgba(0, 0, 0, 0.39);
   -moz-box-shadow: inset 0px 0px 50px 6px rgba(0, 0, 0, 0.39);
