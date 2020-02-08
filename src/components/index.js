@@ -20,13 +20,9 @@ class App extends Component {
             <Route exact path="/SignIn" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/AddMenu" component={AddMenu} />
-            <Route exact path="/Feed" component={isAuthentificated(Feed)} />
-            <Route exact path="/Post" component={isAuthentificated(Post)} />
-            <Route
-              exact
-              path="/Profile"
-              component={isAuthentificated(IndividualProfile)}
-            />
+            <Route exact path="/Feed" component={Feed} />
+            <Route exact path="/Post" component={Post} />
+            <Route exact path="/Profile" component={IndividualProfile} />
           </Switch>
         </Router>
       </Fragment>
