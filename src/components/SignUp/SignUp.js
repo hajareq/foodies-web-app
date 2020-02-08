@@ -22,7 +22,7 @@ class SignUp extends Component {
   };
   handleOnClickInterests = cuisines => {
     const user = {
-      username: this.state.username,
+      username: this.state.username.replace(/\s/g, ""),
       password: this.state.password,
       email: this.state.email,
       image:

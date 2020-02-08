@@ -5,7 +5,6 @@ import { logIn } from "../../redux/actions/logInAction";
 import { setCurrentUser } from "../../redux/actions/logInAction";
 import jwt from "jsonwebtoken";
 import validateInput from "../../Validation/SignUp";
-import setAuthorizationToken from "../../utils/setAuthorizationToken";
 import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -35,16 +34,30 @@ class SignIn extends Component {
     e.preventDefault();
     if (this.isValid()) {
       this.setState({ errors: {} });
+      const userAuth = {
+        email: this.state.email.replace(/\s/g, ""),
+        password: this.state.password.replace(/\s/g, "")
+      };
       axios
         .post(
-          `http://localhost:8080/api/authenticate?username=${this.state.email}&password=${this.state.password}`
+          `http://localhost:8080/api/authenticate?username=${this.state.email}&password=${this.state.password}`,
+          userAuth
         )
         .then(res => {
           this.props.logIn(res.data);
           const token =
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6Indib3VqYWFmYXIgIiwiZXhwIjoxNTgxODAyOTIxLCJyb2wiOlsiUk9MRV9VU0VSIl19.oofB5-EolCJaymBnXEUyIgugOcLBcjxVF_yTtR7GRwi9jkVEY6uTtCEBog5mXRk3_VD97VwBi6sUXzgbGfuvEA";
           localStorage.setItem("jwtToken", token);
-          this.props.setCurrentUser(jwt.decode(token));
+          axios
+            .get(
+              `http://localhost:8080/api/users/find?username=${
+                jwt.decode(token).sub
+              }
+            `
+            )
+            .then(res => {
+              this.props.setCurrentUser(res.data);
+            });
         })
         .then(this.setState({ redirect: true }))
         .catch(error => {

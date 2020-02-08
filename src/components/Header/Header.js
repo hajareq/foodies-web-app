@@ -150,7 +150,7 @@ class Header extends Component {
                 <div className="header-drop-down">
                   <div className="header-name">
                     <FingerprintIcon style={{ marginRight: "7px" }} />
-                    {this.props.auth.user.sub}
+                    {this.props.auth.user.username}
                   </div>
                   <Link to="/profile">
                     <div className="header-profile">
