@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { fetchRecipePosts } from "../../redux/actions/postActions";
+import { fetchReviewPosts } from "../../redux/actions/postActions";
 import axios from "axios";
 import Header from "../Header";
 import Post from "../Post";
 import AddPost from "../AddPost/AddPost";
-import { fetchRecipePosts } from "../../redux/actions/postActions";
-import { fetchReviewPosts } from "../../redux/actions/postActions";
 import "./assets/css/Feed.css";
 
 class Feed extends Component {
