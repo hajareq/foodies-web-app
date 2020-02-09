@@ -1,39 +1,58 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import CommentIcon from "@material-ui/icons/Comment";
 import "./Post.css";
+import PostModal from "../PostModal/PostModal";
 
 class Post extends Component {
+  state = {
+    showModal: false
+  };
+  _handleOnClick = () => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal
+    }));
+  };
+  _handleOnClose = () => {
+    this.setState({ showModal: false });
+  };
   render() {
     return (
-      <div className="post-container">
-        <div className="profile-container">
-          <img
-            alt={`${this.props.post.user.username}'s profile picture`}
-            className="profile-picture"
-            src={`data:image/jpeg;base64,${this.props.post.user.image}`}
-          ></img>
-          <span className="username-text">{this.props.post.user.username}</span>
-        </div>
-        <div className="image-text-container">
-          <img
-            alt=""
-            className="post-picture"
-            src={`data:image/jpeg;base64,${this.props.post.image}`}
-          ></img>
-          <span className="post-text">{this.props.post.text}</span>
-        </div>
-        <div className="reacts-comments-container">
-          <div className="post-reacts">
-            <ThumbUpAltIcon />
-            {this.props.post.reactsNumber}
+      <Fragment>
+        <div className="post-container" onClick={this._handleOnClick}>
+          <div className="profile-container">
+            <img
+              alt={`${this.props.post.user.username}'s profile picture`}
+              className="profile-picture"
+              src={`data:image/jpeg;base64,${this.props.post.user.image}`}
+            ></img>
+            <span className="username-text">
+              {this.props.post.user.username}
+            </span>
           </div>
-          <div className="post-comments">
-            <CommentIcon />
-            {this.props.post.commentsNumber}
+          <div className="image-text-container">
+            <img
+              alt=""
+              className="post-picture"
+              src={`data:image/jpeg;base64,${this.props.post.image}`}
+            ></img>
+            <span className="post-text">{this.props.post.text}</span>
+          </div>
+          <div className="reacts-comments-container">
+            <div className="post-reacts">
+              <ThumbUpAltIcon />
+              {this.props.post.reactsNumber}
+            </div>
+            <div className="post-comments">
+              <CommentIcon />
+              {this.props.post.commentsNumber}
+            </div>
           </div>
         </div>
-      </div>
+        {this.state.showModal && (
+          <PostModal showModal onClose={this._handleOnClose} />
+        )}
+      </Fragment>
     );
   }
 }

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import Modal from "react-modal";
 import PropTypes from "prop-types";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import button from "../Button";
 import "./PostModal.css";
 import PostComment from "../PostComment/PostComment";
 
@@ -27,12 +26,19 @@ class PostModal extends Component {
     inputValue: ""
   };
 
+  componentDidMount() {
+    if (this.props.showModal) {
+      this.openModal();
+    }
+  }
+
   openModal = () => {
     this.setState({ modalIsOpen: true });
   };
 
   closeModal = () => {
     this.setState({ modalIsOpen: false });
+    this.props.onClose();
   };
   _handleChange = e => {
     this.setState({ inputValue: e.target.value });
@@ -49,7 +55,6 @@ class PostModal extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>Open Modal</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
