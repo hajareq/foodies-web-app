@@ -76,7 +76,10 @@ class AddPost extends Component {
         };
     if (this.state.addRecipe) {
       axios
-        .post("http://localhost:8080/api/post/recipe/1", recipe)
+        .post(
+          `http://localhost:8080/api/post/recipe/${this.props.auth.user.id}`,
+          recipe
+        )
         .then(res => {
           this.setState(
             {
