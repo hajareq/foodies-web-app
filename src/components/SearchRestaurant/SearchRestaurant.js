@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import "./SearchRestaurant.css";
 class SearchRestaurant extends Component {
   state = {
     query: "",
@@ -8,7 +8,7 @@ class SearchRestaurant extends Component {
     chosenRestaurant: ""
   };
   _handleRestaurantOnClick = (restaurant, name) => {
-    this.setState({ query: name }, () => {
+    this.setState({ query: name, results: [] }, () => {
       this.props.onChooseRestaurant(restaurant);
     });
   };
@@ -60,12 +60,13 @@ class SearchRestaurant extends Component {
     return (
       <div style={{ margin: "0.8rem" }}>
         <input
+          className="search-restaurant-input"
           placeholder="Choose the restaurant..."
           value={this.state.query}
           ref={input => (this.search = input)}
           onChange={this.handleInputChange}
         />
-        {this.state.results.map((restaurant, index) => {
+        {this.state.results.slice(0, 3).map((restaurant, index) => {
           return (
             <div
               style={{ cursor: "pointer" }}

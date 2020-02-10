@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import Button from "../Button";
+import AddPost from "../AddPost";
+
 import { addMenuPost } from "../../redux/actions/addPostAction";
 import "../AddPost/AddPost.css";
 import PhotoIcon from "@material-ui/icons/Photo";
@@ -89,93 +91,97 @@ class AddMenu extends Component {
     }
 
     return (
-      <div className="add-new-post-container">
-        <div className="add-new-post-title-container">Add a new post</div>
-        <div>
-          <div className="add-new-post-profile-picture-input-container">
-            <img
-              alt={`your profile avatar`}
-              className="profile-picture"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*"
-            ></img>
+      <Fragment>
+        <AddPost />
 
-            <input
-              type="text"
-              className="add-new-post-input"
-              placeholder="Write down your foody thought"
-              value={this.state.inputValue}
-              onChange={this._handleChange}
-            />
-          </div>
-          <div className="add-new-post-buttons-container">
-            <div className="add-new-post-photo-upload-btn-wrapper">
-              <Button
-                label="Add Photo"
-                outlined="true"
-                textColor="#1f4343"
-                icon={<PhotoIcon />}
-              />
+        <div className="add-new-post-container">
+          <div className="add-new-post-title-container">Add a new post</div>
+          <div>
+            <div className="add-new-post-profile-picture-input-container">
+              <img
+                alt={`your profile avatar`}
+                className="profile-picture"
+                src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*"
+              ></img>
+
               <input
-                type="file"
-                name="myfile"
-                accept="image/*"
-                onChange={e => this._handleImageChange(e)}
+                type="text"
+                className="add-new-post-input"
+                placeholder="Write down your foody thought"
+                value={this.state.inputValue}
+                onChange={this._handleChange}
               />
             </div>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "fit-content", marginRight: "0.5rem" }}>
+            <div className="add-new-post-buttons-container">
+              <div className="add-new-post-photo-upload-btn-wrapper">
                 <Button
-                  label="Menu Item"
-                  outlined={!this.state.addMenuItem}
-                  onClick={this.handleMenuItemOnClick}
+                  label="Add Photo"
+                  outlined="true"
+                  textColor="#1f4343"
+                  icon={<PhotoIcon />}
+                />
+                <input
+                  type="file"
+                  name="myfile"
+                  accept="image/*"
+                  onChange={e => this._handleImageChange(e)}
                 />
               </div>
-              <div style={{ width: "fit-content", marginRight: "0.5rem" }}>
-                <Button
-                  label="Offer"
-                  outlined={!this.state.addOffer}
-                  onClick={this.handleOfferOnClick}
-                />
-              </div>
-              <div style={{ width: "fit-content" }}>
-                <Button
-                  label="Donation"
-                  outlined={!this.state.addDonation}
-                  onClick={this.handleDonationOnClick}
-                />
+              <div style={{ display: "flex" }}>
+                <div style={{ width: "fit-content", marginRight: "0.5rem" }}>
+                  <Button
+                    label="Menu Item"
+                    outlined={!this.state.addMenuItem}
+                    onClick={this.handleMenuItemOnClick}
+                  />
+                </div>
+                <div style={{ width: "fit-content", marginRight: "0.5rem" }}>
+                  <Button
+                    label="Offer"
+                    outlined={!this.state.addOffer}
+                    onClick={this.handleOfferOnClick}
+                  />
+                </div>
+                <div style={{ width: "fit-content" }}>
+                  <Button
+                    label="Donation"
+                    outlined={!this.state.addDonation}
+                    onClick={this.handleDonationOnClick}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div style={{ margin: "0.8rem" }}>{$imagePreview}</div>
+            <div style={{ margin: "0.8rem" }}>{$imagePreview}</div>
 
-          <div style={{ padding: "1rem" }}>
-            <Button
-              label="Post"
-              width="15rem"
-              outlined={
-                (this.state.imagePreviewURL &&
-                  this.state.inputValue.length &&
-                  this.state.addMenuItem) ||
-                (this.state.imagePreviewURL &&
-                  this.state.inputValue &&
-                  this.state.addOffer)
-                  ? false
-                  : true
-              }
-              onClick={
-                (this.state.imagePreviewURL &&
-                  this.state.inputValue &&
-                  this.state.addMenuItem) ||
-                (this.state.imagePreviewURL &&
-                  this.state.inputValue &&
-                  this.state.addOffer)
-                  ? this._handleOnPost
-                  : null
-              }
-            />
+            <div style={{ padding: "1rem" }}>
+              <Button
+                label="Post"
+                width="15rem"
+                outlined={
+                  (this.state.imagePreviewURL &&
+                    this.state.inputValue.length &&
+                    this.state.addMenuItem) ||
+                  (this.state.imagePreviewURL &&
+                    this.state.inputValue &&
+                    this.state.addOffer)
+                    ? false
+                    : true
+                }
+                onClick={
+                  (this.state.imagePreviewURL &&
+                    this.state.inputValue &&
+                    this.state.addMenuItem) ||
+                  (this.state.imagePreviewURL &&
+                    this.state.inputValue &&
+                    this.state.addOffer)
+                    ? this._handleOnPost
+                    : null
+                }
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

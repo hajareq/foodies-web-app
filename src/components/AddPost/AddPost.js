@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import StarRatings from "react-star-ratings";
 
 import { connect } from "react-redux";
 import {
@@ -11,12 +10,14 @@ import {
 import CuisineChip from "../CuisineChip/CuisineChip";
 import SearchRestaurant from "../SearchRestaurant/SearchRestaurant";
 import Button from "../Button";
+import addRating from "../AddRating";
 
 import PhotoIcon from "@material-ui/icons/Photo";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 
 import "./AddPost.css";
+import AddRating from "../AddRating";
 class AddPost extends Component {
   state = {
     inputValue: "",
@@ -25,13 +26,42 @@ class AddPost extends Component {
     addRecipe: true,
     showCuisines: false,
     cuisines: [],
-    rating: 0,
+    accessibility: 0,
+    dish: 0,
+    location: 0,
+    price: 0,
+    service: 0,
     chosenRestaurantId: ""
   };
-  _handleRatingOnChange = newRating => {
-    this.setState({
-      rating: newRating
-    });
+  _handleRatingOnChange = (newRating, name) => {
+    switch (name) {
+      case "dish":
+        this.setState({
+          dish: newRating
+        });
+        break;
+      case "location":
+        this.setState({
+          location: newRating
+        });
+        break;
+      case "price":
+        this.setState({
+          price: newRating
+        });
+        break;
+      case "service":
+        this.setState({
+          service: newRating
+        });
+        break;
+      case "accessibility":
+        this.setState({
+          accessibility: newRating
+        });
+        break;
+      default:
+    }
   };
   _handleChange = event => {
     this.setState({ inputValue: event.target.value });
@@ -69,7 +99,13 @@ class AddPost extends Component {
           text: this.state.inputValue
         }
       : {
-          rating: this.state.rating,
+          rating: {
+            accessibility: this.state.accessibility,
+            dish: this.state.dish,
+            location: this.state.location,
+            price: this.state.price,
+            service: this.state.service
+          },
           image: this.state.imagePreviewURL,
           text: this.state.inputValue,
           restaurant: { id: this.state.chosenRestaurantId }
@@ -86,7 +122,11 @@ class AddPost extends Component {
               addRecipe: true,
               showCuisines: false,
               cuisines: [],
-              rating: 0,
+              accessibility: 0,
+              dish: 0,
+              location: 0,
+              price: 0,
+              service: 0,
               chosenRestaurantId: ""
             },
             () => {
@@ -98,7 +138,25 @@ class AddPost extends Component {
       axios
         .post("http://localhost:8080/api/post/review/1", recipe)
         .then(res => {
-          this.props.addReviewPost(res.data);
+          this.setState(
+            {
+              inputValue: "",
+              imagePreviewURL: "",
+              addRating: false,
+              addRecipe: true,
+              showCuisines: false,
+              cuisines: [],
+              accessibility: 0,
+              dish: 0,
+              location: 0,
+              price: 0,
+              service: 0,
+              chosenRestaurantId: ""
+            },
+            () => {
+              this.props.addReviewPost(res.data);
+            }
+          );
         });
     }
   };
@@ -199,6 +257,11 @@ class AddPost extends Component {
               />
             </div>
           </div>
+          {!this.state.addRecipe && (
+            <SearchRestaurant
+              onChooseRestaurant={this._handleonChooseRestaurant}
+            />
+          )}
           <div style={{ display: "flex", alignItems: "center" }}>
             <div className="add-new-post-profile-picture-input-container">
               <img
@@ -232,7 +295,16 @@ class AddPost extends Component {
             </div>
           </div>
 
-          <div style={{ margin: "0.8rem" }}>{$imagePreview}</div>
+          <div
+            style={{
+              margin: "0.8rem",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
+            {$imagePreview}
+          </div>
           {this.state.addRecipe && (
             <div
               style={{
@@ -280,7 +352,7 @@ class AddPost extends Component {
               }}
               onClick={this._handleAddRatingOnClick}
             >
-              Choose your rating
+              Click to choose your ratings
               {this.state.addRating ? (
                 <ArrowDropUpIcon />
               ) : (
@@ -289,22 +361,38 @@ class AddPost extends Component {
             </div>
           )}
           {this.state.addRating && (
-            <div style={{ margin: "0.8rem" }}>
-              <StarRatings
-                starDimension="20px"
-                rating={this.state.rating}
-                starHoverColor="#8de4af"
-                starRatedColor="#1f4343"
+            <div>
+              <AddRating
+                name="dish"
+                quest="How do you rate this dish?"
+                rating={this.state.dish}
                 changeRating={this._handleRatingOnChange}
-                numberOfStars={5}
-                name="rating"
-              />
+              ></AddRating>
+              <AddRating
+                name="price"
+                quest="How do you rate the price?"
+                rating={this.state.price}
+                changeRating={this._handleRatingOnChange}
+              ></AddRating>
+              <AddRating
+                name="service"
+                quest="How do you rate the service?"
+                rating={this.state.service}
+                changeRating={this._handleRatingOnChange}
+              ></AddRating>
+              <AddRating
+                name="location"
+                quest="How do you rate the location of this restaurant?"
+                rating={this.state.location}
+                changeRating={this._handleRatingOnChange}
+              ></AddRating>
+              <AddRating
+                name="accessibility"
+                quest="How do you rate this restaurant's accessibility?"
+                rating={this.state.accessibility}
+                changeRating={this._handleRatingOnChange}
+              ></AddRating>
             </div>
-          )}
-          {!this.state.addRecipe && (
-            <SearchRestaurant
-              onChooseRestaurant={this._handleonChooseRestaurant}
-            />
           )}
 
           <div style={{ padding: "1rem" }}>
@@ -312,17 +400,27 @@ class AddPost extends Component {
               label="Post"
               width="15rem"
               outlined={
-                (this.state.imagePreviewURL && this.state.cuisines.length) ||
-                (this.state.imagePreviewURL &&
-                  this.state.rating &&
+                ((this.state.imagePreviewURL || this.state.inputValue) &&
+                  this.state.cuisines.length) ||
+                ((this.state.imagePreviewURL || this.state.inputValue) &&
+                  this.state.dish &&
+                  this.state.location &&
+                  this.state.price &&
+                  this.state.accessibility &&
+                  this.state.service &&
                   this.state.chosenRestaurantId)
                   ? false
                   : true
               }
               onClick={
-                (this.state.imagePreviewURL && this.state.cuisines.length) ||
-                (this.state.imagePreviewURL &&
-                  this.state.rating &&
+                ((this.state.imagePreviewURL || this.state.inputValue) &&
+                  this.state.cuisines.length) ||
+                ((this.state.imagePreviewURL || this.state.inputValue) &&
+                  this.state.dish &&
+                  this.state.location &&
+                  this.state.price &&
+                  this.state.accessibility &&
+                  this.state.service &&
                   this.state.chosenRestaurantId)
                   ? this._handleOnPost
                   : null
