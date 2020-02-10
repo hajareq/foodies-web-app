@@ -68,7 +68,7 @@ class RestaurantHeader extends Component {
               <div className="sections-wrapper">
                 <NavLink
                   exact
-                  to="/Feed"
+                  to="/"
                   className="sections"
                   activeStyle={{
                     borderBottom: "4px solid #8de4af"
@@ -137,7 +137,7 @@ class RestaurantHeader extends Component {
                     <FingerprintIcon style={{ marginRight: "7px" }} />
                     {this.props.auth.user.username}
                   </div>
-                  <Link to="/profile">
+                  <Link to="/RestaurantProfile">
                     <div className="header-profile">
                       <PersonIcon style={{ marginRight: "7px" }} /> Profile
                     </div>

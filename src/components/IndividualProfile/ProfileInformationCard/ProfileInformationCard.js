@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import StarRatings from "react-star-ratings";
 import Button from "../../Button";
 import "./ProfileInformationCard.css";
 
@@ -8,7 +9,13 @@ class ProfileInformationCard extends Component {
     return (
       <div className="profile-data-container">
         <div className="profile-data-cover">
-          <div style={{ display: "flex", alignItems: "baseline" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              position: "relative"
+            }}
+          >
             <div className="profile-name">Selena GOMEZ</div>
             {this.props.connectedProfile && (
               <div>
@@ -17,6 +24,16 @@ class ProfileInformationCard extends Component {
             )}
             {this.props.visitedProfile && (
               <Button width="115px" label="Follow" linkTo="/SignUp" />
+            )}
+            {this.props.restaurant && (
+              <div className="profile-information-card-restaurant-rating">
+                <StarRatings
+                  rating={2.403}
+                  starDimension="20px"
+                  starSpacing="1px"
+                  starRatedColor="#002727"
+                />
+              </div>
             )}
           </div>
           <div>
@@ -43,6 +60,7 @@ class ProfileInformationCard extends Component {
 }
 ProfileInformationCard.propTypes = {
   connectedProfile: PropTypes.bool,
-  visitedProfile: PropTypes.bool
+  visitedProfile: PropTypes.bool,
+  restaurant: PropTypes.bool
 };
 export default ProfileInformationCard;

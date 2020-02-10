@@ -30,3 +30,7 @@
   font-weight: 600;
   color: #002727;
 }
+.profile-information-card-restaurant-rating {
+  position: absolute;
+  right: 0px;
+}
