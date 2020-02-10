@@ -9,7 +9,7 @@ class IndividualProfile extends Component {
   render() {
     return (
       <div>
-        <Header withSections />
+        {!this.props.restaurant && <Header withSections />}
         <div className="individual-profile-container">
           <div
             className="profile-img"
@@ -22,7 +22,10 @@ class IndividualProfile extends Component {
           style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
           <div style={{ width: "75%" }}>
-            <ProfileInformationCard connectedProfile />
+            <ProfileInformationCard
+              connectedProfile
+              restaurant={this.props.restaurant}
+            />
             <div className="individual-profile-posts">
               {this.props.posts.map((item, key) => {
                 return <ProfilePost key={key} img={item} />;
@@ -36,7 +39,8 @@ class IndividualProfile extends Component {
 }
 
 IndividualProfile.propTypes = {
-  posts: PropTypes.array
+  posts: PropTypes.array,
+  restaurant: PropTypes.bool
 };
 
 IndividualProfile.defaultProps = {

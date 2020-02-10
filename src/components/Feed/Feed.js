@@ -6,7 +6,6 @@ import axios from "axios";
 import Header from "../Header";
 import Post from "../Post";
 import AddPost from "../AddPost/AddPost";
-import RestaurantHeader from "../RestaurantHeader";
 import "./assets/css/Feed.css";
 
 class Feed extends Component {
