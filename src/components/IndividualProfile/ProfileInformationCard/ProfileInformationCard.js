@@ -20,14 +20,17 @@ class ProfileInformationCard extends Component {
             <div className="profile-name">
               {this.props.userProfile.username}
             </div>
-            {this.props.connectedProfile && (
-              <div>
-                <Button width="115px" label="Edit Profile" linkTo="/SignUp" />
-              </div>
-            )}
-            {this.props.visitedProfile && (
-              <Button width="115px" label="Follow" linkTo="/SignUp" />
-            )}
+
+            <div>
+              <Button
+                onClick={
+                  this.props.connectedProfile ? this.props.onFollow : null
+                }
+                width="115px"
+                label={this.props.connectedProfile ? "Edit Profile" : "Follow"}
+              />
+            </div>
+
             {this.props.restaurant && (
               <div className="profile-information-card-restaurant-rating">
                 <StarRatings

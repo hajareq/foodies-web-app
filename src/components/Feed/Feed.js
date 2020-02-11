@@ -22,9 +22,25 @@ class Feed extends Component {
         })
       );
   }
+  _getPostType = post => {
+    if (post.cuisines) {
+      return "recipe";
+    } else if (post.offer) {
+      return "offer";
+    } else if (post.rating) {
+      return "review";
+    }
+  };
   _renderPosts = () => {
     return this.props.post.map((item, index) => {
-      return <Post post={item} key={index} style={{ marginTop: "20px" }} />;
+      return (
+        <Post
+          type={this._getPostType(item)}
+          post={item}
+          key={index}
+          style={{ marginTop: "20px" }}
+        />
+      );
     });
   };
   render() {
