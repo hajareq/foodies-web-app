@@ -1,11 +1,33 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import axios from "axios";
 import Header from "../Header";
 import ProfileInformationCard from "./ProfileInformationCard";
 import ProfilePost from "../ProfilePost";
 import "./IndividualProfile.css";
 
 class IndividualProfile extends Component {
+  state = {
+    posts: []
+  };
+  componentDidMount() {
+    axios
+      .all([
+        axios.get(
+          `http://localhost:8080/api/post/recipe/${this.props.auth.user.id}`
+        ),
+        axios.get(
+          `http://localhost:8080/api/post/review-user/${this.props.auth.user.id}`
+        )
+      ])
+      .then(
+        axios.spread((resRecipe, resReview) => {
+          const posts = resRecipe.data.concat(resReview.data);
+          this.setState({ posts: posts });
+        })
+      );
+  }
   render() {
     return (
       <div>
@@ -14,7 +36,7 @@ class IndividualProfile extends Component {
           <div
             className="profile-img"
             style={{
-              backgroundImage: `url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*")`
+              backgroundImage: `url(data:image/jpeg;base64,${this.props.auth.user.image})`
             }}
           ></div>
         </div>
@@ -27,8 +49,10 @@ class IndividualProfile extends Component {
               restaurant={this.props.restaurant}
             />
             <div className="individual-profile-posts">
-              {this.props.posts.map((item, key) => {
-                return <ProfilePost key={key} img={item} />;
+              {this.state.posts.map((item, key) => {
+                return (
+                  <ProfilePost key={key} img={item.image} text={item.text} />
+                );
               })}
             </div>
           </div>
@@ -51,4 +75,6 @@ IndividualProfile.defaultProps = {
   ]
 };
 
-export default IndividualProfile;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps)(IndividualProfile);

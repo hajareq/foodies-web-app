@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import StarRatings from "react-star-ratings";
 import Button from "../../Button";
@@ -16,7 +17,7 @@ class ProfileInformationCard extends Component {
               position: "relative"
             }}
           >
-            <div className="profile-name">Selena GOMEZ</div>
+            <div className="profile-name">{this.props.auth.user.username}</div>
             {this.props.connectedProfile && (
               <div>
                 <Button width="115px" label="Edit Profile" linkTo="/SignUp" />
@@ -47,10 +48,16 @@ class ProfileInformationCard extends Component {
               Posts <span className="number">1.7K</span>
             </div>
             <div className="profile-data-item">
-              Followers <span className="number">1.7K</span>
+              Followers{" "}
+              <span className="number">
+                {this.props.auth.user.followers.length}
+              </span>
             </div>
             <div className="profile-data-item">
-              Following <span className="number">1.7K</span>
+              Following{" "}
+              <span className="number">
+                {this.props.auth.user.following.length}
+              </span>
             </div>
           </div>
         </div>
@@ -63,4 +70,6 @@ ProfileInformationCard.propTypes = {
   visitedProfile: PropTypes.bool,
   restaurant: PropTypes.bool
 };
-export default ProfileInformationCard;
+
+const mapStateToProps = ({ auth }) => ({ auth });
+export default connect(mapStateToProps)(ProfileInformationCard);
