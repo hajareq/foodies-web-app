@@ -7,6 +7,7 @@ import "./ProfileInformationCard.css";
 
 class ProfileInformationCard extends Component {
   render() {
+    console.log(this.props.userProfile.followers);
     return (
       <div className="profile-data-container">
         <div className="profile-data-cover">
@@ -17,7 +18,9 @@ class ProfileInformationCard extends Component {
               position: "relative"
             }}
           >
-            <div className="profile-name">{this.props.auth.user.username}</div>
+            <div className="profile-name">
+              {this.props.userProfile.username}
+            </div>
             {this.props.connectedProfile && (
               <div>
                 <Button width="115px" label="Edit Profile" linkTo="/SignUp" />
@@ -49,14 +52,12 @@ class ProfileInformationCard extends Component {
             </div>
             <div className="profile-data-item">
               Followers{" "}
-              <span className="number">
-                {this.props.auth.user.followers.length}
-              </span>
+              <span className="number">{this.props.userProfile.followers}</span>
             </div>
             <div className="profile-data-item">
               Following{" "}
               <span className="number">
-                {this.props.auth.user.following.length}
+                {/* {this.props.auth.user.following.length} */}
               </span>
             </div>
           </div>
@@ -71,5 +72,4 @@ ProfileInformationCard.propTypes = {
   restaurant: PropTypes.bool
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
-export default connect(mapStateToProps)(ProfileInformationCard);
+export default connect(null)(ProfileInformationCard);

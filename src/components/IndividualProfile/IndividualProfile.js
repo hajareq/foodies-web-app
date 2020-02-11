@@ -9,22 +9,21 @@ import "./IndividualProfile.css";
 
 class IndividualProfile extends Component {
   state = {
-    posts: []
+    posts: [],
+    user: {}
   };
   componentDidMount() {
+    const { params } = this.props.match;
     axios
       .all([
-        axios.get(
-          `http://localhost:8080/api/post/recipe/${this.props.auth.user.id}`
-        ),
-        axios.get(
-          `http://localhost:8080/api/post/review-user/${this.props.auth.user.id}`
-        )
+        axios.get(`http://localhost:8080/api/post/recipe/${params.id}`),
+        axios.get(`http://localhost:8080/api/post/review-user/${params.id}`),
+        axios.get(`http://localhost:8080/api/user/${params.id}`)
       ])
       .then(
-        axios.spread((resRecipe, resReview) => {
+        axios.spread((resRecipe, resReview, resUser) => {
           const posts = resRecipe.data.concat(resReview.data);
-          this.setState({ posts: posts });
+          this.setState({ posts: posts, user: resUser.data });
         })
       );
   }
@@ -36,7 +35,7 @@ class IndividualProfile extends Component {
           <div
             className="profile-img"
             style={{
-              backgroundImage: `url(data:image/jpeg;base64,${this.props.auth.user.image})`
+              backgroundImage: `url(data:image/jpeg;base64,${this.state.user.image})`
             }}
           ></div>
         </div>
@@ -47,6 +46,7 @@ class IndividualProfile extends Component {
             <ProfileInformationCard
               connectedProfile
               restaurant={this.props.restaurant}
+              userProfile={this.state.user}
             />
             <div className="individual-profile-posts">
               {this.state.posts.map((item, key) => {
@@ -75,6 +75,4 @@ IndividualProfile.defaultProps = {
   ]
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
-
-export default connect(mapStateToProps)(IndividualProfile);
+export default connect(null)(IndividualProfile);
