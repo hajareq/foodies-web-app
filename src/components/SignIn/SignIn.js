@@ -35,8 +35,8 @@ class SignIn extends Component {
     if (this.isValid()) {
       this.setState({ errors: {} });
       const userAuth = {
-        email: this.state.email.replace(/\s/g, ""),
-        password: this.state.password.replace(/\s/g, "")
+        email: this.state.email.trim(),
+        password: this.state.password.trim()
       };
       axios
         .post(
@@ -85,7 +85,7 @@ class SignIn extends Component {
                 label="Email*"
                 type="text"
                 name="email"
-                value="this.state.email"
+                value={this.state.email}
                 onChange={this.handleOnChange}
               />
               {errors.email && (
@@ -95,7 +95,7 @@ class SignIn extends Component {
                 type="password"
                 label="Password*"
                 name="password"
-                value="this.state.password"
+                value={this.state.password}
                 onChange={this.handleOnChange}
               />
               {errors.password && (

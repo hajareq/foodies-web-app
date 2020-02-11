@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import CommentIcon from "@material-ui/icons/Comment";
+import StarRatings from "react-star-ratings";
 import "./Post.css";
 import PostModal from "../PostModal/PostModal";
+import PostOwner from "../PostOwner/PostOwner";
 
 class Post extends Component {
   state = {
@@ -16,19 +18,31 @@ class Post extends Component {
   _handleOnClose = () => {
     this.setState({ showModal: false });
   };
+  _calculateRating = rating => {
+    return (
+      (rating.dish +
+        rating.accessibility +
+        rating.service +
+        rating.price +
+        rating.location) /
+      5
+    );
+  };
   render() {
     return (
       <Fragment>
         <div className="post-container" onClick={this._handleOnClick}>
           <div className="profile-container">
-            <img
-              alt={`${this.props.post.user.username}'s profile picture`}
-              className="profile-picture"
-              src={`data:image/jpeg;base64,${this.props.post.user.image}`}
-            ></img>
-            <span className="username-text">
-              {this.props.post.user.username}
-            </span>
+            <PostOwner user={this.props.post.user} />
+            {this.props.type === "review" && (
+              <StarRatings
+                starDimension="20px"
+                rating={this._calculateRating(this.props.post.rating)}
+                starRatedColor="#1f4343"
+                starSpacing="3px"
+                numberOfStars={5}
+              />
+            )}
           </div>
           <div className="image-text-container">
             <img

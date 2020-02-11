@@ -9,20 +9,10 @@
   display: flex;
   padding: 10px;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-.profile-picture {
-  margin-right: 15px;
-  width: 55px;
-  height: 55px;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 4px solid #5cdb95;
-}
-.username-text {
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-}
+
 .image-text-container {
   display: flex;
   flex-direction: column;
@@ -35,8 +25,11 @@
   margin-bottom: 15px;
 }
 .post-text {
-  font-size: 1.2rem;
+  text-align: center;
+  font-size: calc(5px + 2vmin);
   font-weight: lighter;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 .reacts-comments-container {
   height: 3rem;

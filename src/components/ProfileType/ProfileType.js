@@ -7,10 +7,17 @@ class ProfileType extends Component {
     return (
       <div className="profile-cards-container sign-in-container">
         <ProfileTypeCard
-          onClick={this.props.onProfileChosen}
+          onClick={() => {
+            this.props.onProfileChosen("Individual");
+          }}
           type="Individual"
         />
-        <ProfileTypeCard type="Restaurant" />
+        <ProfileTypeCard
+          type="Restaurant"
+          onClick={() => {
+            this.props.onProfileChosen("Restaurant");
+          }}
+        />
       </div>
     );
   }

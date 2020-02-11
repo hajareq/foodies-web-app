@@ -11,7 +11,7 @@ export default class Input extends Component {
         <input
           type={this.props.type}
           name={this.props.name}
-          value={this.props.username}
+          value={this.props.value}
           onChange={this.handleOnChange}
           required
         ></input>

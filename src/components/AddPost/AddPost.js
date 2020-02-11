@@ -10,14 +10,13 @@ import {
 import CuisineChip from "../CuisineChip/CuisineChip";
 import SearchRestaurant from "../SearchRestaurant/SearchRestaurant";
 import Button from "../Button";
-import addRating from "../AddRating";
+import AddRating from "../AddRating";
 
 import PhotoIcon from "@material-ui/icons/Photo";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 
 import "./AddPost.css";
-import AddRating from "../AddRating";
 class AddPost extends Component {
   state = {
     inputValue: "",
@@ -34,34 +33,9 @@ class AddPost extends Component {
     chosenRestaurantId: ""
   };
   _handleRatingOnChange = (newRating, name) => {
-    switch (name) {
-      case "dish":
-        this.setState({
-          dish: newRating
-        });
-        break;
-      case "location":
-        this.setState({
-          location: newRating
-        });
-        break;
-      case "price":
-        this.setState({
-          price: newRating
-        });
-        break;
-      case "service":
-        this.setState({
-          service: newRating
-        });
-        break;
-      case "accessibility":
-        this.setState({
-          accessibility: newRating
-        });
-        break;
-      default:
-    }
+    this.setState({
+      [name]: newRating
+    });
   };
   _handleChange = event => {
     this.setState({ inputValue: event.target.value });
@@ -139,7 +113,10 @@ class AddPost extends Component {
         });
     } else {
       axios
-        .post("http://localhost:8080/api/post/review/1", recipe)
+        .post(
+          `http://localhost:8080/api/post/review/${this.props.auth.user.id}`,
+          recipe
+        )
         .then(res => {
           this.setState(
             {

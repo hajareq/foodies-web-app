@@ -10,6 +10,7 @@ import RestaurantProfile from "./RestaurantProfile";
 import AddMenu from "./AddMenu";
 // import isAuthentificated from "../utils/isAuthentificated";
 import "./index.css";
+import RestaurantFeed from "./RestaurantFeed";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/AddMenu" component={AddMenu} />
             <Route exact path="/Feed" component={Feed} />
+            <Route exact path="/RestaurantFeed" component={RestaurantFeed} />
             <Route exact path="/Post" component={Post} />
             <Route exact path="/Profile" component={IndividualProfile} />
             <Route

@@ -6,10 +6,7 @@ import "./assets/css/ProfileTypeCard.css";
 export default class ProfileTypeCard extends Component {
   render() {
     return (
-      <div
-        onClick={this.props.type === "Individual" ? this.props.onClick : null}
-        className="individual-profile"
-      >
+      <div onClick={this.props.onClick} className="individual-profile">
         {this.props.type === "Individual" ? (
           <PersonIcon fontSize="large" />
         ) : (
