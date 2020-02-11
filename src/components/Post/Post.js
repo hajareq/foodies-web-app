@@ -31,7 +31,7 @@ class Post extends Component {
   render() {
     return (
       <Fragment>
-        <div className="post-container" onClick={this._handleOnClick}>
+        <div className="post-container">
           <div className="profile-container">
             <PostOwner user={this.props.post.user} />
             {this.props.type === "review" && (
@@ -46,6 +46,7 @@ class Post extends Component {
           </div>
           <div className="image-text-container">
             <img
+              onClick={this._handleOnClick}
               alt=""
               className="post-picture"
               src={`data:image/jpeg;base64,${this.props.post.image}`}

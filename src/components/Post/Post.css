@@ -23,6 +23,7 @@
 .post-picture {
   width: 100%;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 .post-text {
   text-align: center;
