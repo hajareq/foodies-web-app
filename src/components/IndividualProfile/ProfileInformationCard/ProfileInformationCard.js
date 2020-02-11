@@ -7,7 +7,6 @@ import "./ProfileInformationCard.css";
 
 class ProfileInformationCard extends Component {
   render() {
-    console.log(this.props.userProfile.followers);
     return (
       <div className="profile-data-container">
         <div className="profile-data-cover">
@@ -40,24 +39,21 @@ class ProfileInformationCard extends Component {
               </div>
             )}
           </div>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            non elit commodo, pharetra odio condimentum. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Vestibulum non elit commodo,
-            pharetra odio condimentum.
-          </div>
+          <div>{this.props.userProfile.bio}</div>
           <div className="profile-data">
             <div className="profile-data-item">
-              Posts <span className="number">1.7K</span>
+              Posts <span className="number">{this.props.posts.length}</span>
             </div>
             <div className="profile-data-item">
               Followers{" "}
-              <span className="number">{this.props.userProfile.followers}</span>
+              <span className="number">
+                {this.props.userProfile.followers.length}
+              </span>
             </div>
             <div className="profile-data-item">
               Following{" "}
               <span className="number">
-                {/* {this.props.auth.user.following.length} */}
+                {this.props.userProfile.following.length}
               </span>
             </div>
           </div>

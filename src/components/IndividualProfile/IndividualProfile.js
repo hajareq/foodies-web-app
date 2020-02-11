@@ -10,7 +10,8 @@ import "./IndividualProfile.css";
 class IndividualProfile extends Component {
   state = {
     posts: [],
-    user: {}
+    user: {},
+    isLoading: true
   };
   componentDidMount() {
     const { params } = this.props.match;
@@ -23,11 +24,14 @@ class IndividualProfile extends Component {
       .then(
         axios.spread((resRecipe, resReview, resUser) => {
           const posts = resRecipe.data.concat(resReview.data);
-          this.setState({ posts: posts, user: resUser.data });
+          this.setState({ posts: posts, user: resUser.data, isLoading: false });
         })
       );
   }
   render() {
+    if (this.state.isLoading) {
+      return <div>wait</div>;
+    }
     return (
       <div>
         {!this.props.restaurant && <Header withSections />}
@@ -47,6 +51,7 @@ class IndividualProfile extends Component {
               connectedProfile
               restaurant={this.props.restaurant}
               userProfile={this.state.user}
+              posts={this.state.posts}
             />
             <div className="individual-profile-posts">
               {this.state.posts.map((item, key) => {
