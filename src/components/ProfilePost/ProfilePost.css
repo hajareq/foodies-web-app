@@ -47,3 +47,20 @@
   font-size: 1.2rem;
   font-weight: 600;
 }
+.profile-post-caption {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-post-caption-label {
+  color: #8de4af;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}

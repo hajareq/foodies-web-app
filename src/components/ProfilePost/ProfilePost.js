@@ -2,11 +2,13 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import CommentIcon from "@material-ui/icons/Comment";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import PostModal from "../PostModal/PostModal";
 import "./ProfilePost.css";
 
 class ProfilePost extends Component {
   state = {
-    hover: false
+    hover: false,
+    showModal: false
   };
   handleMouseEnter = () => {
     this.setState({ hover: true });
@@ -14,16 +16,34 @@ class ProfilePost extends Component {
   hanldeMouseLeave = () => {
     this.setState({ hover: false });
   };
+  _handleOnClick = () => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal
+    }));
+  };
+  _handleOnClose = () => {
+    this.setState({ showModal: false });
+  };
   render() {
     return (
       <Fragment>
         <div
           className="profile-post-container"
-          style={{ backgroundImage: `url(${this.props.img})` }}
+          style={{
+            backgroundImage: `url(data:image/jpeg;base64,${this.props.img})`
+          }}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.hanldeMouseLeave}
+          onClick={this._handleOnClick}
         >
           <div className="overlay"></div>
+          {this.props.img === "" && (
+            <div className="profile-post-caption">
+              <div className="profile-post-caption-label">
+                {this.props.text}
+              </div>
+            </div>
+          )}
           {this.state.hover && (
             <div className="profile-post-icons-container">
               <div className="profile-post-icons">
@@ -37,6 +57,9 @@ class ProfilePost extends Component {
                 </div>
               </div>
             </div>
+          )}
+          {this.state.showModal && (
+            <PostModal showModal onClose={this._handleOnClose} />
           )}
         </div>
       </Fragment>

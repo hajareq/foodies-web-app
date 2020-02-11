@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/Feed" component={Feed} />
             <Route exact path="/RestaurantFeed" component={RestaurantFeed} />
             <Route exact path="/Post" component={Post} />
-            <Route exact path="/Profile" component={IndividualProfile} />
+            <Route exact path="/Profile/:id" component={IndividualProfile} />
             <Route
               exact
               path="/RestaurantProfile"
