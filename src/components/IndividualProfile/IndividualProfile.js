@@ -66,9 +66,7 @@ class IndividualProfile extends Component {
             />
             <div className="individual-profile-posts">
               {this.state.posts.map((item, key) => {
-                return (
-                  <ProfilePost key={key} img={item.image} text={item.text} />
-                );
+                return <ProfilePost key={key} post={item} />;
               })}
             </div>
           </div>
