@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { fetchRecipePosts } from "../../redux/actions/postActions";
-import { fetchReviewPosts } from "../../redux/actions/postActions";
+import {
+  fetchRecipePosts,
+  fetchReviewPosts,
+  fetchMenuPosts,
+  fetchOfferPosts
+} from "../../redux/actions/postActions";
 import axios from "axios";
 import Header from "../Header";
 import Post from "../Post";
@@ -13,12 +17,16 @@ class Feed extends Component {
     axios
       .all([
         axios.get("http://localhost:8080/api/post/recipe"),
-        axios.get("http://localhost:8080/api/post/review")
+        axios.get("http://localhost:8080/api/post/review"),
+        axios.get("http://localhost:8080/api/post/menu"),
+        axios.get("http://localhost:8080/api/donate/offer")
       ])
       .then(
-        axios.spread((resRecipe, resReview) => {
+        axios.spread((resRecipe, resReview, resMenu, resOffer) => {
           this.props.fetchRecipePosts(resRecipe.data);
           this.props.fetchReviewPosts(resReview.data);
+          this.props.fetchMenuPosts(resMenu.data);
+          this.props.fetchOfferPosts(resOffer.data);
         })
       );
   }
@@ -59,6 +67,9 @@ class Feed extends Component {
 }
 
 const mapStateToProps = ({ post }) => ({ post });
-export default connect(mapStateToProps, { fetchRecipePosts, fetchReviewPosts })(
-  Feed
-);
+export default connect(mapStateToProps, {
+  fetchRecipePosts,
+  fetchReviewPosts,
+  fetchMenuPosts,
+  fetchOfferPosts
+})(Feed);

@@ -66,3 +66,17 @@
   padding-left: 20px;
   color: black;
 }
+.post-tag {
+  height: 35px;
+  width: fit-content;
+  min-width: 73px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-tag-label {
+  color: #e4f3df;
+  font-size: calc(4px + 2vmin);
+  font-weight: 400;
+}

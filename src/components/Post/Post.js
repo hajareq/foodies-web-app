@@ -83,12 +83,29 @@ class Post extends Component {
       axios.post("http://localhost:8080/api/comment", comment);
     }
   };
+  _getTagStyle = () => {
+    if (this.props.type === "recipe") {
+      return "#cf455c";
+    } else if (this.props.type === "menuItem") {
+      return "#ffdd67";
+    } else if (this.props.type === "offer") {
+      return "#ff8a5c";
+    } else if (this.props.type === "donation") {
+      return "#444444";
+    }
+  };
   render() {
     return (
       <Fragment>
         <div className="post-container">
           <div className="profile-container">
-            <PostOwner user={this.props.post.user} />
+            <PostOwner
+              user={
+                this.props.post.user
+                  ? this.props.post.user
+                  : this.props.post.restaurant
+              }
+            />
             {this.props.type === "review" && (
               <StarRatings
                 starDimension="20px"
@@ -97,6 +114,14 @@ class Post extends Component {
                 starSpacing="3px"
                 numberOfStars={5}
               />
+            )}
+            {this.props.type !== "review" && (
+              <div
+                className="post-tag"
+                style={{ backgroundColor: this._getTagStyle() }}
+              >
+                <div className="post-tag-label">{this.props.type}</div>
+              </div>
             )}
           </div>
           <div className="image-text-container">
@@ -136,6 +161,7 @@ class Post extends Component {
         {this.state.showModal && (
           <PostModal
             post={this.props.post}
+            type={this.props.type}
             showModal
             onClose={this._handleOnClose}
           />

@@ -3,17 +3,21 @@ import "./CuisineChip.css";
 
 export default class CuisineChip extends Component {
   state = {
-    selected: false
+    selected: false || this.props.selected
   };
   handleChipOnClick = () => {
-    this.setState(
-      prevState => ({
-        selected: !prevState.selected
-      }),
-      () => {
-        this.props.onClick();
-      }
-    );
+    if (!this.props.selected) {
+      this.setState(
+        prevState => ({
+          selected: !prevState.selected
+        }),
+        () => {
+          if (this.props.onClick) {
+            this.props.onClick();
+          }
+        }
+      );
+    }
   };
   render() {
     return (

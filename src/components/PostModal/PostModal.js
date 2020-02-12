@@ -3,9 +3,13 @@ import Modal from "react-modal";
 import axios from "axios";
 import PropTypes from "prop-types";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import "./PostModal.css";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import PostComment from "../PostComment/PostComment";
 import PostOwner from "../PostOwner/PostOwner";
+import CuisineChip from "../CuisineChip";
+import GetRestaurantRating from "../GetRestaurantRatings";
+import "./PostModal.css";
 
 const customStyles = {
   content: {
@@ -28,7 +32,9 @@ class PostModal extends Component {
   state = {
     modalIsOpen: false,
     inputValue: "",
-    comments: []
+    comments: [],
+    showCuisines: false,
+    showRating: false
   };
 
   componentDidMount() {
@@ -63,6 +69,17 @@ class PostModal extends Component {
       </div>
     );
   };
+  _handleShowCuisinesOnClick = () => {
+    this.setState(prevState => ({
+      showCuisines: !prevState.showCuisines
+    }));
+  };
+
+  _handleShowRatingOnClick = () => {
+    this.setState(prevState => ({
+      showRating: !prevState.showRating
+    }));
+  };
 
   render() {
     return (
@@ -89,12 +106,98 @@ class PostModal extends Component {
                 alt=""
               />
             </div>
-
             <div className="post-modal-reacts-container">
               <div style={{ padding: "1rem" }}>
                 <PostOwner user={this.props.post.user} />
               </div>
-
+              <div>
+                <div className="post-modal-text">{this.props.post.text}</div>
+                {this.props.type === "recipe" && (
+                  <Fragment>
+                    <div
+                      style={{
+                        color: "#1f4343",
+                        marginLeft: "0.8rem",
+                        width: "fit-content",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        cursor: "pointer"
+                      }}
+                      onClick={this._handleShowCuisinesOnClick}
+                    >
+                      show cuisines for recipe
+                      {this.state.showCuisines ? (
+                        <ArrowDropUpIcon />
+                      ) : (
+                        <ArrowDropDownIcon />
+                      )}
+                    </div>
+                    <div>
+                      {this.state.showCuisines && (
+                        <div style={{ margin: "0.8rem" }}>
+                          {this.props.post.cuisines.map((cuisine, index) => {
+                            return (
+                              <CuisineChip
+                                key={index}
+                                label={cuisine.name}
+                                selected
+                              />
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </Fragment>
+                )}
+                {this.props.type === "review" && (
+                  <Fragment>
+                    <div
+                      style={{
+                        color: "#1f4343",
+                        marginLeft: "0.8rem",
+                        width: "fit-content",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        cursor: "pointer"
+                      }}
+                      onClick={this._handleShowRatingOnClick}
+                    >
+                      Show ratings details
+                      {this.state.showRating ? (
+                        <ArrowDropUpIcon />
+                      ) : (
+                        <ArrowDropDownIcon />
+                      )}
+                    </div>
+                    {this.state.showRating && (
+                      <div style={{ marginRight: "0.8rem" }}>
+                        <GetRestaurantRating
+                          label="Dish"
+                          rating={this.props.post.rating.dish}
+                        />
+                        <GetRestaurantRating
+                          label="Price"
+                          rating={this.props.post.rating.price}
+                        />
+                        <GetRestaurantRating
+                          label="Service"
+                          rating={this.props.post.rating.service}
+                        />
+                        <GetRestaurantRating
+                          label="Location of restaurant"
+                          rating={this.props.post.rating.location}
+                        />
+                        <GetRestaurantRating
+                          label="restaurant's accessibility"
+                          rating={this.props.post.rating.accessibility}
+                        />
+                      </div>
+                    )}
+                  </Fragment>
+                )}
+              </div>
               <div className="post-modal-likes">
                 <ThumbUpAltIcon />
                 <span className="post-modal-number-of-likes">
