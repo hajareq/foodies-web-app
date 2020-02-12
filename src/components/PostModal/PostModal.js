@@ -138,7 +138,11 @@ class PostModal extends Component {
                         <div style={{ margin: "0.8rem" }}>
                           {this.props.post.cuisines.map((cuisine, index) => {
                             return (
-                              <CuisineChip key={index} label={cuisine.name} />
+                              <CuisineChip
+                                key={index}
+                                label={cuisine.name}
+                                selected
+                              />
                             );
                           })}
                         </div>
