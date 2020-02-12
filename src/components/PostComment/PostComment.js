@@ -10,15 +10,17 @@ class PostComment extends Component {
           <div className="post-modal-comment">
             <div className="post-modal-comment-profile">
               <img
-                src={this.props.img}
+                src={this.props.comment.user.image}
                 alt=""
                 className="post-modal-profile-image-comment"
               />
               <span className="post-modal-profile-username-comment">
-                Jane DOE
+                {this.props.comment.user.username}
               </span>
             </div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            <div className="post-modal-comment-text">
+              {this.props.comment.text}
+            </div>
           </div>
         </div>
       </div>

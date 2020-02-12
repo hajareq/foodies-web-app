@@ -28,6 +28,9 @@ class IndividualProfile extends Component {
         })
       );
   }
+  _handleOnFollow = () => {
+    //axios.post(`http://localhost:8080/api/user/follow/`);
+  };
   render() {
     if (this.state.isLoading) {
       return <div>wait</div>;
@@ -48,7 +51,8 @@ class IndividualProfile extends Component {
         >
           <div style={{ width: "75%" }}>
             <ProfileInformationCard
-              connectedProfile
+              onFollow={this._handleOnFollow}
+              connectedProfile={this.props.auth.user.id === this.state.user.id}
               restaurant={this.props.restaurant}
               userProfile={this.state.user}
               posts={this.state.posts}
@@ -79,5 +83,6 @@ IndividualProfile.defaultProps = {
     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*"
   ]
 };
+const mapStateToProps = ({ auth }) => ({ auth });
 
-export default connect(null)(IndividualProfile);
+export default connect(mapStateToProps)(IndividualProfile);

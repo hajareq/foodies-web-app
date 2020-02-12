@@ -10,6 +10,7 @@ class Post extends Component {
   state = {
     showModal: false
   };
+
   _handleOnClick = () => {
     this.setState(prevState => ({
       showModal: !prevState.showModal
@@ -65,7 +66,11 @@ class Post extends Component {
           </div>
         </div>
         {this.state.showModal && (
-          <PostModal showModal onClose={this._handleOnClose} />
+          <PostModal
+            post={this.props.post}
+            showModal
+            onClose={this._handleOnClose}
+          />
         )}
       </Fragment>
     );
