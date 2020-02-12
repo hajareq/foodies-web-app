@@ -11,12 +11,12 @@ export default class AddRating extends Component {
       <div className="add-rating-container">
         <span>{this.props.quest}</span>
         <StarRatings
-          starDimension="20px"
+          starDimension="calc(3px + 2vmin)"
           rating={this.props.rating}
           starHoverColor="#8de4af"
           starRatedColor="#1f4343"
           changeRating={this._handleRatingOnChange}
-          starSpacing="3px"
+          starSpacing="2px"
           numberOfStars={5}
           name={this.props.name}
         />

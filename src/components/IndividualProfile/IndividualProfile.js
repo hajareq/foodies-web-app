@@ -29,7 +29,11 @@ class IndividualProfile extends Component {
       );
   }
   _handleOnFollow = () => {
-    //axios.post(`http://localhost:8080/api/user/follow/`);
+    axios
+      .post(`http://localhost:8080/api/user/follow/${this.state.user.id}`, 2)
+      .then(res => {
+        console.log(res.data);
+      });
   };
   render() {
     if (this.state.isLoading) {

@@ -4,8 +4,23 @@ import PropTypes from "prop-types";
 import StarRatings from "react-star-ratings";
 import Button from "../../Button";
 import "./ProfileInformationCard.css";
+import axios from "axios";
 
 class ProfileInformationCard extends Component {
+  state = {
+    following: []
+  };
+  componentDidMount = () => {
+    axios
+      .get(
+        `http://localhost:8080/api/user/following?id=${this.props.userProfile.id}`
+      )
+      .then(res => {
+        this.setState({ following: res.data }, () => {
+          console.log(res.data);
+        });
+      });
+  };
   render() {
     return (
       <div className="profile-data-container">
@@ -24,7 +39,7 @@ class ProfileInformationCard extends Component {
             <div>
               <Button
                 onClick={
-                  this.props.connectedProfile ? this.props.onFollow : null
+                  !this.props.connectedProfile ? this.props.onFollow : null
                 }
                 width="115px"
                 label={this.props.connectedProfile ? "Edit Profile" : "Follow"}
@@ -55,9 +70,7 @@ class ProfileInformationCard extends Component {
             </div>
             <div className="profile-data-item">
               Following{" "}
-              <span className="number">
-                {this.props.userProfile.following.length}
-              </span>
+              <span className="number">{this.state.following.length}</span>
             </div>
           </div>
         </div>

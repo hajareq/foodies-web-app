@@ -21,7 +21,7 @@ class Button extends Component {
             style={{
               color: this.props.textColor,
               width: this.props.width,
-              fontSize: "17px",
+              fontSize: "calc(2px + 2vmin)",
               fontWeight: "600",
               display: "flex",
               alignItems: "center",
