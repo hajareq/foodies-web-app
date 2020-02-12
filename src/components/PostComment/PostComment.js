@@ -10,7 +10,7 @@ class PostComment extends Component {
           <div className="post-modal-comment">
             <div className="post-modal-comment-profile">
               <img
-                src={this.props.comment.user.image}
+                src={`data:image/jpeg;base64,${this.props.comment.user.image}`}
                 alt=""
                 className="post-modal-profile-image-comment"
               />
