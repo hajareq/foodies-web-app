@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 0.5px solid rgb(185, 183, 183);
 }
 .post-reacts {
   display: flex;
@@ -60,4 +61,8 @@
 }
 .post-comments:hover {
   background-color: #b2c4ad;
+}
+.post-comment-input {
+  padding-left: 20px;
+  color: black;
 }
