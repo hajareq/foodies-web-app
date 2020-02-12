@@ -83,6 +83,17 @@ class Post extends Component {
       axios.post("http://localhost:8080/api/comment", comment);
     }
   };
+  _getTagStyle = () => {
+    if (this.props.type === "recipe") {
+      return "#cf455c";
+    } else if (this.props.type === "menuItem") {
+      return "#ffdd67";
+    } else if (this.props.type === "offer") {
+      return "#ff8a5c";
+    } else if (this.props.type === "donation") {
+      return "#444444";
+    }
+  };
   render() {
     return (
       <Fragment>
@@ -97,6 +108,14 @@ class Post extends Component {
                 starSpacing="3px"
                 numberOfStars={5}
               />
+            )}
+            {this.props.type !== "review" && (
+              <div
+                className="post-tag"
+                style={{ backgroundColor: this._getTagStyle() }}
+              >
+                <div className="post-tag-label">{this.props.type}</div>
+              </div>
             )}
           </div>
           <div className="image-text-container">
