@@ -1,14 +1,21 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import CommentIcon from "@material-ui/icons/Comment";
 import StarRatings from "react-star-ratings";
-import "./Post.css";
 import PostModal from "../PostModal/PostModal";
 import PostOwner from "../PostOwner/PostOwner";
+import "./Post.css";
 
 class Post extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    isliked: false,
+    likes: this.props.post.likes,
+    inputValue: "",
+    showCommentInput: false
   };
 
   _handleOnClick = () => {
@@ -28,6 +35,53 @@ class Post extends Component {
         rating.location) /
       5
     );
+  };
+  _handleOnClickLike = () => {
+    this.setState(prevState => ({
+      isliked: !prevState.isliked,
+      likes: !this.state.isliked ? prevState.likes + 1 : prevState.likes - 1
+    }));
+    if (!this.state.isliked) {
+      if (this.props.type === "recipe") {
+        axios.post(
+          `http://localhost:8080/api/post/recipe/like/${this.props.post.id}`
+        );
+      } else if (this.props.type === "review") {
+        axios.post(
+          `http://localhost:8080/api/post/review/like/${this.props.post.id}`
+        );
+      }
+    } else {
+      if (this.props.type === "recipe") {
+        axios.post(
+          `http://localhost:8080/api/post/recipe/unlike/${this.props.post.id}`
+        );
+      } else if (this.props.type === "review") {
+        axios.post(
+          `http://localhost:8080/api/post/review/unlike/${this.props.post.id}`
+        );
+      }
+    }
+  };
+  _handleOnClickComment = () => {
+    this.setState(prevState => ({
+      showCommentInput: !prevState.showCommentInput,
+      inputValue: ""
+    }));
+  };
+  _handleChange = e => {
+    this.setState({ inputValue: e.target.value });
+  };
+  _handleOnKeyDown = e => {
+    const comment = {
+      recipe: { id: this.props.post.id },
+      user: { id: this.props.auth.user.id },
+      text: this.state.inputValue
+    };
+    if (e.key === "Enter" && e.target.value !== "") {
+      this.setState({ showCommentInput: false, inputValue: "" });
+      axios.post("http://localhost:8080/api/comment", comment);
+    }
   };
   render() {
     return (
@@ -55,15 +109,29 @@ class Post extends Component {
             <span className="post-text">{this.props.post.text}</span>
           </div>
           <div className="reacts-comments-container">
-            <div className="post-reacts">
-              <ThumbUpAltIcon />
-              {this.props.post.reactsNumber}
+            <div className="post-reacts" onClick={this._handleOnClickLike}>
+              {this.state.isliked ? (
+                <ThumbUpAltIcon />
+              ) : (
+                <ThumbUpAltOutlinedIcon />
+              )}
+              {this.state.likes}
             </div>
-            <div className="post-comments">
+            <div className="post-comments" onClick={this._handleOnClickComment}>
               <CommentIcon />
               {this.props.post.commentsNumber}
             </div>
           </div>
+          {this.state.showCommentInput && (
+            <input
+              type="text"
+              placeholder="Type your comment..."
+              value={this.state.inputValue}
+              className="post-comment-input"
+              onChange={this._handleChange}
+              onKeyDown={this._handleOnKeyDown}
+            />
+          )}
         </div>
         {this.state.showModal && (
           <PostModal
@@ -139,4 +207,6 @@ Post.defaultProps = {
   }
 };
 
-export default Post;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps)(Post);
