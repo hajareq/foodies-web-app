@@ -131,7 +131,9 @@ class Post extends Component {
               className="post-picture"
               src={`data:image/jpeg;base64,${this.props.post.image}`}
             ></img>
-            <span className="post-text">{this.props.post.text}</span>
+            <span onClick={this._handleOnClick} className="post-text">
+              {this.props.post.text}
+            </span>
           </div>
           <div className="reacts-comments-container">
             <div className="post-reacts" onClick={this._handleOnClickLike}>

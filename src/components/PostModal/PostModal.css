@@ -61,3 +61,12 @@
   margin-bottom: 0.3rem;
   width: fit-content;
 }
+.post-modal-text-with-no-image {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}

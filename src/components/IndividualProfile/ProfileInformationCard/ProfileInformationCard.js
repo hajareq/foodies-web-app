@@ -35,7 +35,6 @@ class ProfileInformationCard extends Component {
             <div className="profile-name">
               {this.props.userProfile.username}
             </div>
-
             <div>
               <Button
                 onClick={
@@ -45,7 +44,6 @@ class ProfileInformationCard extends Component {
                 label={this.props.connectedProfile ? "Edit Profile" : "Follow"}
               />
             </div>
-
             {this.props.restaurant && (
               <div className="profile-information-card-restaurant-rating">
                 <StarRatings

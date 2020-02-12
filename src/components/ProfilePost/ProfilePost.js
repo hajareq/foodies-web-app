@@ -72,14 +72,15 @@ class ProfilePost extends Component {
               </div>
             </div>
           )}
-          {this.state.showModal && (
-            <PostModal
-              showModal
-              onClose={this._handleOnClose}
-              post={this.props.post}
-            />
-          )}
         </div>
+        {this.state.showModal && (
+          <PostModal
+            showModal
+            onClose={this._handleOnClose}
+            post={this.props.post}
+            type={this.props.type}
+          />
+        )}
       </Fragment>
     );
   }

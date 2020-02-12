@@ -97,21 +97,31 @@ class PostModal extends Component {
                 width: "50%",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 backgroundColor: "#1f4343"
               }}
             >
-              <img
-                style={{ width: "100%" }}
-                src={`data:image/jpeg;base64,${this.props.post.image}`}
-                alt=""
-              />
+              {!this.props.post.image && (
+                <div className="post-modal-text-with-no-image">
+                  {this.props.post.text}
+                </div>
+              )}
+              {this.props.post.image && (
+                <img
+                  style={{ width: "100%" }}
+                  src={`data:image/jpeg;base64,${this.props.post.image}`}
+                  alt=""
+                />
+              )}
             </div>
             <div className="post-modal-reacts-container">
               <div style={{ padding: "1rem" }}>
                 <PostOwner user={this.props.post.user} />
               </div>
               <div>
-                <div className="post-modal-text">{this.props.post.text}</div>
+                {this.props.post.image && (
+                  <div className="post-modal-text">{this.props.post.text}</div>
+                )}
                 {this.props.type === "recipe" && (
                   <Fragment>
                     <div

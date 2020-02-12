@@ -38,6 +38,15 @@ class IndividualProfile extends Component {
         console.log(res.data);
       });
   };
+  _getPostType = post => {
+    if (post.cuisines) {
+      return "recipe";
+    } else if (post.offer) {
+      return "offer";
+    } else if (post.rating) {
+      return "review";
+    }
+  };
   render() {
     if (this.state.isLoading) {
       return <div>wait</div>;
@@ -66,7 +75,13 @@ class IndividualProfile extends Component {
             />
             <div className="individual-profile-posts">
               {this.state.posts.map((item, key) => {
-                return <ProfilePost key={key} post={item} />;
+                return (
+                  <ProfilePost
+                    key={key}
+                    post={item}
+                    type={this._getPostType(item)}
+                  />
+                );
               })}
             </div>
           </div>

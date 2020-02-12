@@ -31,6 +31,7 @@
   font-weight: lighter;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
+  cursor: pointer;
 }
 .reacts-comments-container {
   height: 3rem;
