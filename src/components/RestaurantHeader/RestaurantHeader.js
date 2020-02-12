@@ -68,7 +68,7 @@ class RestaurantHeader extends Component {
               <div className="sections-wrapper">
                 <NavLink
                   exact
-                  to="/"
+                  to="/RestaurantFeed"
                   className="sections"
                   activeStyle={{
                     borderBottom: "4px solid #8de4af"
@@ -77,10 +77,17 @@ class RestaurantHeader extends Component {
                   <HomeIcon />
                   <span className="section-label">Home</span>
                 </NavLink>
-                <Link className="sections" to="/Statistics">
+                <NavLink
+                  exact
+                  to="/Statistics"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
                   <EqualizerIcon />
                   <span className="section-label">Statistics</span>
-                </Link>
+                </NavLink>
               </div>
             )}
             {this.props.withButtons && (

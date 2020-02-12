@@ -6,5 +6,6 @@
 }
 .posts {
   margin-top: 20px;
-  width: 50%;
+  width: 80%;
+  max-width: 900px;
 }

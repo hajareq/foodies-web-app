@@ -29,8 +29,11 @@ class IndividualProfile extends Component {
       );
   }
   _handleOnFollow = () => {
+    let user = {
+      id: 1
+    };
     axios
-      .post(`http://localhost:8080/api/user/follow/${this.state.user.id}`, 2)
+      .post(`http://localhost:8080/api/user/follow/${this.state.user.id}`, user)
       .then(res => {
         console.log(res.data);
       });
