@@ -136,6 +136,7 @@ class Post extends Component {
         {this.state.showModal && (
           <PostModal
             post={this.props.post}
+            type={this.props.type}
             showModal
             onClose={this._handleOnClose}
           />

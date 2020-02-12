@@ -10,4 +10,5 @@
   font-size: calc(4px + 2vmin);
   font-weight: 600;
   cursor: pointer;
+  color: black;
 }

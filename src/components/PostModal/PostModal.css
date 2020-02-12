@@ -55,3 +55,9 @@
   border-bottom: none;
   color: black;
 }
+.post-modal-text {
+  color: rgb(31, 67, 67);
+  margin-left: 0.8rem;
+  margin-bottom: 0.3rem;
+  width: fit-content;
+}
