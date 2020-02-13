@@ -115,7 +115,11 @@ class Recomendations extends Component {
             );
           })}
           <Button
-            linkTo="/SignIn"
+            linkTo={
+              this.props.profileType === "Restaurant"
+                ? "/RestaurantSignIn"
+                : "/SignIn"
+            }
             width="50%"
             label="Done"
             onClick={this.handleOnClickButton}

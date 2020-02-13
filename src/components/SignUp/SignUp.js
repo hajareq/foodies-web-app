@@ -74,7 +74,10 @@ class SignUp extends Component {
             />
           )}
           {this.state.profileTypeChosen && this.state.interests && (
-            <Interests onClick={this.handleOnClickInterests} />
+            <Interests
+              onClick={this.handleOnClickInterests}
+              profileType={this.state.profileType}
+            />
           )}
         </div>
         <Footer />

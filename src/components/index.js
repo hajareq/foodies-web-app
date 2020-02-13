@@ -18,6 +18,7 @@ import OffersFeed from "./OffersFeed/OffersFeed";
 import Recommendation from "./Recommendation";
 import DonationsFeed from "./DonationsFeed/DonationsFeed";
 import MenusFeed from "./MenusFeed/MenusFeed";
+import RestaurantSignIn from "./RestaurantSignIn";
 
 class App extends Component {
   render() {
@@ -27,6 +28,11 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/SignIn" component={SignIn} />
+            <Route
+              exact
+              path="/RestaurantSignIn"
+              component={RestaurantSignIn}
+            />
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/AddMenu" component={AddMenu} />
             <Route exact path="/Feed" component={Feed} />
