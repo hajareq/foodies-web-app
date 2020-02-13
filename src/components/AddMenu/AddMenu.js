@@ -53,20 +53,25 @@ class AddMenu extends Component {
         image: this.state.imagePreviewURL,
         text: this.state.inputValue
       };
-      axios.post("http://localhost:8080/api/post/menu/1", post).then(res => {
-        this.setState(
-          {
-            inputValue: "",
-            imagePreviewURL: "",
-            addMenuItem: true,
-            addOffer: false,
-            addDonation: false
-          },
-          () => {
-            this.props.addMenuPost(res.data);
-          }
-        );
-      });
+      axios
+        .post(
+          `http://localhost:8080/api/post/menu/${this.props.auth.user.id}`,
+          post
+        )
+        .then(res => {
+          this.setState(
+            {
+              inputValue: "",
+              imagePreviewURL: "",
+              addMenuItem: true,
+              addOffer: false,
+              addDonation: false
+            },
+            () => {
+              this.props.addMenuPost(res.data);
+            }
+          );
+        });
     }
     if (this.state.addOffer) {
       post = {
@@ -218,4 +223,6 @@ class AddMenu extends Component {
     );
   }
 }
-export default connect(null, { addMenuPost })(AddMenu);
+
+const mapStateToProps = ({ auth }) => ({ auth });
+export default connect(mapStateToProps, { addMenuPost })(AddMenu);

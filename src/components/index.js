@@ -38,7 +38,7 @@ class App extends Component {
             <Route exact path="/Profile/:id" component={IndividualProfile} />
             <Route
               exact
-              path="/RestaurantProfile"
+              path="/RestaurantProfile/:id"
               component={RestaurantProfile}
             />
           </Switch>

@@ -144,7 +144,7 @@ class RestaurantHeader extends Component {
                     <FingerprintIcon style={{ marginRight: "7px" }} />
                     {this.props.auth.user.username}
                   </div>
-                  <Link to="/RestaurantProfile">
+                  <Link to={`/RestaurantProfile/${this.props.auth.user.id}`}>
                     <div className="header-profile">
                       <PersonIcon style={{ marginRight: "7px" }} /> Profile
                     </div>
