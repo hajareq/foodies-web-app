@@ -139,7 +139,7 @@ class PostModal extends Component {
             </div>
             <div className="post-modal-reacts-container">
               <div style={{ padding: "1rem" }}>
-                <PostOwner user={user} />
+                <PostOwner user={user} post={this.props.post} />
               </div>
               <div>
                 {this.props.post.image && (

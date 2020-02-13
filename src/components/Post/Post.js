@@ -100,7 +100,7 @@ class Post extends Component {
       <Fragment>
         <div className="post-container">
           <div className="profile-container">
-            <PostOwner user={user} />
+            <PostOwner user={user} post={this.props.post} />
             {this.props.type === "review" && (
               <StarRatings
                 starDimension="20px"
