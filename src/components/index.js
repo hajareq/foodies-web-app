@@ -15,12 +15,9 @@ import RestaurantStatistics from "./RestaurantStatistics/RestaurantStatistics";
 import RecipesFeed from "./RecipesFeed";
 import ReviewsFeed from "./ReviewsFeed/ReviewsFeed";
 import OffersFeed from "./OffersFeed/OffersFeed";
-<<<<<<< HEAD
 import Recommendation from "./Recommendation";
-=======
 import DonationsFeed from "./DonationsFeed/DonationsFeed";
 import MenusFeed from "./MenusFeed/MenusFeed";
->>>>>>> a83993599f5c745df2fa3ea452685856b4d8f583
 
 class App extends Component {
   render() {
