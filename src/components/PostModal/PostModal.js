@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import Modal from "react-modal";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -79,6 +80,27 @@ class PostModal extends Component {
     this.setState(prevState => ({
       showRating: !prevState.showRating
     }));
+  };
+
+  _handleOnKeyDown = e => {
+    const comment = {
+      recipe: { id: this.props.post.id },
+      user: { id: this.props.auth.user.id },
+      text: this.state.inputValue
+    };
+    let commentToShow = {
+      recipe: { id: this.props.post.id },
+      user: this.props.auth.user,
+      text: this.state.inputValue
+    };
+    if (e.key === "Enter" && e.target.value !== "") {
+      this.setState({ inputValue: "" });
+      axios.post("http://localhost:8080/api/comment", comment).then(res => {
+        this.setState(prevState => ({
+          comments: [...prevState.comments, commentToShow]
+        }));
+      });
+    }
   };
 
   render() {
@@ -222,6 +244,7 @@ class PostModal extends Component {
                   value={this.state.inputValue}
                   className="post-modal-input"
                   onChange={this._handleChange}
+                  onKeyDown={this._handleOnKeyDown}
                 />
               </div>
             </div>
@@ -240,4 +263,6 @@ PostModal.defaultProps = {
     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1143810714.jpg?crop=0.668xw:1.00xh;0.0425xw,0&resize=480:*"
 };
 
-export default PostModal;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps)(PostModal);
