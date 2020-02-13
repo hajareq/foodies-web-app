@@ -137,12 +137,22 @@ class Header extends Component {
             {this.props.withSections && (
               <Fragment>
                 <div className="perm_identity">
-                  <SearchIcon style={{ marginTop: "12px" }} />
-                  <input
-                    type="text"
-                    className="search"
-                    placeholder="Type your search here..."
-                  />
+                  <NavLink
+                    exact
+                    to="/Recommendation"
+                    className="sections"
+                    activeStyle={{
+                      borderBottom: "4px solid #8de4af"
+                    }}
+                  >
+                    <SearchIcon />
+                    <span
+                      className="section-label"
+                      style={{ marginRight: "20px" }}
+                    >
+                      Recommend me a restaurant
+                    </span>
+                  </NavLink>
                 </div>
               </Fragment>
             )}
