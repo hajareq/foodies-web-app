@@ -80,18 +80,39 @@ class Header extends Component {
                   <HomeIcon />
                   <span className="section-label">Home</span>
                 </NavLink>
-                <Link className="sections" to="/Recepies">
+                <NavLink
+                  exact
+                  to="/Recipes"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
                   <FastfoodIcon />
-                  <span className="section-label">Recepies</span>
-                </Link>
-                <Link className="sections" to="/Reviews">
+                  <span className="section-label">Recipes</span>
+                </NavLink>
+                <NavLink
+                  exact
+                  to="/Reviews"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
                   <StarsIcon />
                   <span className="section-label">Reviews</span>
-                </Link>
-                <Link className="sections" to="/Offers">
+                </NavLink>
+                <NavLink
+                  exact
+                  to="/Offers"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
                   <LocalOfferIcon />
                   <span className="section-label">Offers</span>
-                </Link>
+                </NavLink>
                 <Link className="sections" to="/Donations">
                   <RestaurantIcon />
                   <span className="section-label">Donations</span>

@@ -30,7 +30,7 @@ class IndividualProfile extends Component {
   }
   _handleOnFollow = () => {
     let user = {
-      id: 1
+      id: this.props.auth.user.id
     };
     axios
       .post(`http://localhost:8080/api/user/follow/${this.state.user.id}`, user)

@@ -104,6 +104,7 @@ class PostModal extends Component {
   };
 
   render() {
+    let user = this.props.post.user || this.props.post.restaurant;
     return (
       <div>
         <Modal
@@ -138,7 +139,7 @@ class PostModal extends Component {
             </div>
             <div className="post-modal-reacts-container">
               <div style={{ padding: "1rem" }}>
-                <PostOwner user={this.props.post.user} />
+                <PostOwner user={user} />
               </div>
               <div>
                 {this.props.post.image && (

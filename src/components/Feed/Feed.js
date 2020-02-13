@@ -54,7 +54,9 @@ class Feed extends Component {
   render() {
     return (
       <Fragment>
-        <Header withSections />
+        <div style={{ width: "100%", position: "sticky", top: "0" }}>
+          <Header withSections />
+        </div>
         <div className="posts-container">
           <div className="posts">
             <AddPost />
