@@ -15,6 +15,8 @@ import RestaurantStatistics from "./RestaurantStatistics/RestaurantStatistics";
 import RecipesFeed from "./RecipesFeed";
 import ReviewsFeed from "./ReviewsFeed/ReviewsFeed";
 import OffersFeed from "./OffersFeed/OffersFeed";
+import DonationsFeed from "./DonationsFeed/DonationsFeed";
+import MenusFeed from "./MenusFeed/MenusFeed";
 
 class App extends Component {
   render() {
@@ -32,6 +34,8 @@ class App extends Component {
             <Route exact path="/Recipes" component={RecipesFeed} />
             <Route exact path="/Reviews" component={ReviewsFeed} />
             <Route exact path="/Offers" component={OffersFeed} />
+            <Route exact path="/Donations" component={DonationsFeed} />
+            <Route exact path="/Menus" component={MenusFeed} />
             <Route exact path="/Statistics" component={RestaurantStatistics} />
             <Route exact path="/Profile/:id" component={IndividualProfile} />
             <Route

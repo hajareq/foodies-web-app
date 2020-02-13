@@ -4,7 +4,8 @@ import {
   fetchRecipePosts,
   fetchReviewPosts,
   fetchMenuPosts,
-  fetchOfferPosts
+  fetchOfferPosts,
+  fetchDonationPosts
 } from "../../redux/actions/postActions";
 import axios from "axios";
 import Header from "../Header";
@@ -19,14 +20,16 @@ class Feed extends Component {
         axios.get("http://localhost:8080/api/post/recipe"),
         axios.get("http://localhost:8080/api/post/review"),
         axios.get("http://localhost:8080/api/post/menu"),
-        axios.get("http://localhost:8080/api/donate/offer")
+        axios.get("http://localhost:8080/api/donate/offer"),
+        axios.get("http://localhost:8080/api/donate/donation")
       ])
       .then(
-        axios.spread((resRecipe, resReview, resMenu, resOffer) => {
+        axios.spread((resRecipe, resReview, resMenu, resOffer, resDonation) => {
           this.props.fetchRecipePosts(resRecipe.data);
           this.props.fetchReviewPosts(resReview.data);
           this.props.fetchMenuPosts(resMenu.data);
           this.props.fetchOfferPosts(resOffer.data);
+          this.props.fetchDonationPosts(resDonation.data);
         })
       );
   }
@@ -37,10 +40,15 @@ class Feed extends Component {
       return "offer";
     } else if (post.rating) {
       return "review";
+    } else if (post.menuItem) {
+      return "menuItem";
+    } else {
+      return "donation";
     }
   };
   _renderPosts = () => {
-    return this.props.post.map((item, index) => {
+    let shuffledArray = this._shuffleArray(this.props.post);
+    return shuffledArray.map((item, index) => {
       return (
         <Post
           type={this._getPostType(item)}
@@ -50,6 +58,15 @@ class Feed extends Component {
         />
       );
     });
+  };
+  _shuffleArray = array => {
+    // for (let i = array.length - 1; i > 0; i--) {
+    //   const j = Math.floor(Math.random() * i);
+    //   const temp = array[i];
+    //   array[i] = array[j];
+    //   array[j] = temp;
+    // }
+    return array;
   };
   render() {
     return (
@@ -73,5 +90,6 @@ export default connect(mapStateToProps, {
   fetchRecipePosts,
   fetchReviewPosts,
   fetchMenuPosts,
-  fetchOfferPosts
+  fetchOfferPosts,
+  fetchDonationPosts
 })(Feed);

@@ -38,7 +38,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 2rem;
+  margin-left: 1rem;
   color: #8de4af;
   padding-bottom: 0.9em;
   margin-top: 14px;
@@ -47,7 +47,8 @@ ul {
   display: flex;
 }
 .section-label {
-  margin-left: 3px;
+  margin-left: 2px;
+  font-size: calc(0.5px + 2vmin);
 }
 .header-drop-down {
   width: fit-content;

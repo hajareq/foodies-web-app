@@ -15,6 +15,7 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import RedeemIcon from "@material-ui/icons/Redeem";
 import setAuthorizationToken from "../../utils/setAuthorizationToken";
 
 class Header extends Component {
@@ -104,6 +105,17 @@ class Header extends Component {
                 </NavLink>
                 <NavLink
                   exact
+                  to="/Menus"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
+                  <RestaurantIcon />
+                  <span className="section-label">Menus</span>
+                </NavLink>
+                <NavLink
+                  exact
                   to="/Offers"
                   className="sections"
                   activeStyle={{
@@ -113,10 +125,17 @@ class Header extends Component {
                   <LocalOfferIcon />
                   <span className="section-label">Offers</span>
                 </NavLink>
-                <Link className="sections" to="/Donations">
-                  <RestaurantIcon />
+                <NavLink
+                  exact
+                  to="/Donations"
+                  className="sections"
+                  activeStyle={{
+                    borderBottom: "4px solid #8de4af"
+                  }}
+                >
+                  <RedeemIcon />
                   <span className="section-label">Donations</span>
-                </Link>
+                </NavLink>
               </div>
             )}
             {this.props.withButtons && (

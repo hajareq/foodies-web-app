@@ -11,6 +11,7 @@ import PostOwner from "../PostOwner/PostOwner";
 import CuisineChip from "../CuisineChip";
 import GetRestaurantRating from "../GetRestaurantRatings";
 import "./PostModal.css";
+import Button from "../Button";
 
 const customStyles = {
   content: {
@@ -35,7 +36,9 @@ class PostModal extends Component {
     inputValue: "",
     comments: [],
     showCuisines: false,
-    showRating: false
+    showRating: false,
+    claimed: false,
+    code: 0
   };
 
   componentDidMount() {
@@ -102,7 +105,32 @@ class PostModal extends Component {
       });
     }
   };
-
+  _handleOnClaim = () => {
+    if (this.props.type === "offer") {
+      axios
+        .get(
+          `http://localhost:8080/api/donate/claimOffer/${this.props.post.id}`
+        )
+        .then(res => {
+          this.setState({
+            claimed: true,
+            code: res.data.code
+          });
+        });
+    }
+    if (this.props.type === "donation") {
+      axios
+        .get(
+          `http://localhost:8080/api/donate/claimDonation/${this.props.post.id}`
+        )
+        .then(res => {
+          this.setState({
+            claimed: true,
+            code: res.data.code
+          });
+        });
+    }
+  };
   render() {
     let user = this.props.post.user || this.props.post.restaurant;
     return (
@@ -138,8 +166,26 @@ class PostModal extends Component {
               )}
             </div>
             <div className="post-modal-reacts-container">
-              <div style={{ padding: "1rem" }}>
+              <div
+                style={{
+                  padding: "1rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between"
+                }}
+              >
                 <PostOwner user={user} />
+                {(this.props.type === "offer" ||
+                  this.props.type === "donation") && (
+                  <Button
+                    label={
+                      this.state.claimed
+                        ? `This is your code: ${this.state.code}`
+                        : `Claim ${this.props.type}`
+                    }
+                    onClick={this._handleOnClaim}
+                  />
+                )}
               </div>
               <div>
                 {this.props.post.image && (

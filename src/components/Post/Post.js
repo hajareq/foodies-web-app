@@ -87,7 +87,7 @@ class Post extends Component {
     if (this.props.type === "recipe") {
       return "#cf455c";
     } else if (this.props.type === "menuItem") {
-      return "#ffdd67";
+      return "#27496d";
     } else if (this.props.type === "offer") {
       return "#ff8a5c";
     } else if (this.props.type === "donation") {
