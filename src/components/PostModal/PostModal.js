@@ -174,7 +174,7 @@ class PostModal extends Component {
                   justifyContent: "space-between"
                 }}
               >
-                <PostOwner user={user} />
+                <PostOwner user={user} post={this.props.post} />
                 {(this.props.type === "offer" ||
                   this.props.type === "donation") && (
                   <Button

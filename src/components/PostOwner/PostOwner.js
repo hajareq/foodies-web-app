@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import moment from "moment";
 import "./PostOwner.css";
 export default class PostOwner extends Component {
   render() {
@@ -18,14 +19,17 @@ export default class PostOwner extends Component {
               src={`data:image/jpeg;base64,${this.props.user.image}`}
             ></img>{" "}
           </Link>
-          <Link to={`/profile/${this.props.user.id}`}>
-            <span
-              onClick={this._handleProfileOnClick}
-              className="username-text"
-            >
-              {this.props.user.username}
-            </span>
-          </Link>
+          <div>
+            <Link to={`/profile/${this.props.user.id}`}>
+              <span
+                onClick={this._handleProfileOnClick}
+                className="username-text"
+              >
+                {this.props.user.username}
+              </span>
+            </Link>
+            <div>{moment(this.props.post.date).format("LLL")}</div>
+          </div>
         </div>
       </div>
     );
