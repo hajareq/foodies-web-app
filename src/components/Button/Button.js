@@ -25,7 +25,9 @@ class Button extends Component {
               fontWeight: "600",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
+              height: "fit-content",
+              minHeight: "2rem"
             }}
             onClick={this.props.onClick}
           >
